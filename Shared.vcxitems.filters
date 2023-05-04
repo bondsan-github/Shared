@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source code">
+      <UniqueIdentifier>{1dcaffd9-3951-4d94-a656-cd5cfbb5bc64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Hpp">
+      <UniqueIdentifier>{1debe9b3-a11a-4c9e-a0de-62fc716f9a8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Cpp">
+      <UniqueIdentifier>{3a0ee08a-276b-4b61-bdd7-4b51eadad4b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Hpp\Operating system">
+      <UniqueIdentifier>{0c03d3e8-cec1-4223-a86b-ba71f8edbdfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Cpp\Operating system">
+      <UniqueIdentifier>{c255aa48-a6af-4e52-8ffe-b8577e675ada}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Hpp\Graphics">
+      <UniqueIdentifier>{cedc9a30-63d5-4a3c-a2eb-e1d64dc46406}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Cpp\Graphics">
+      <UniqueIdentifier>{341805b2-1a96-4d1e-bd8d-839fdf3aec90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Hpp\Graphics\Direct2D">
+      <UniqueIdentifier>{f5860609-ad37-4933-972f-a1b2b6360b44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Hpp\Graphics\Direct3D">
+      <UniqueIdentifier>{c26ecaef-4e5f-431b-bb82-5eb4a4768523}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Hpp\Graphics\DWrite">
+      <UniqueIdentifier>{d6b34608-9bcf-40d2-bd8b-04382867d1b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Hpp\Graphics\WIC">
+      <UniqueIdentifier>{4ae60a59-d9e8-4f0f-a701-0497843e9f61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Cpp\Graphics\Direct2D">
+      <UniqueIdentifier>{273a0f14-70b9-419f-b11c-d5cf10dbea25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Cpp\Graphics\Direct3D">
+      <UniqueIdentifier>{71af5836-55ea-4dc8-83db-7e00861aa79d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Cpp\Graphics\DWrite">
+      <UniqueIdentifier>{787880fa-f268-48c9-bb5d-099d516ab062}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Cpp\Graphics\WIC">
+      <UniqueIdentifier>{e81ed32d-765d-440c-a5d7-e9c5bffd29cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Hpp\Input">
+      <UniqueIdentifier>{d3e0aef5-edac-4392-b640-fa63df703e59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Cpp\Input">
+      <UniqueIdentifier>{10115bff-bc72-4a2f-8e06-4c77c26200d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Hpp\Output">
+      <UniqueIdentifier>{e4ba7be4-949f-412a-9583-0fdecd7a9489}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Cpp\Output">
+      <UniqueIdentifier>{2ced4e0a-7269-4fe2-99b8-7508b7725fa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Hpp\Patterns">
+      <UniqueIdentifier>{452dc698-d4d1-41c7-ac60-938b5c856138}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Cpp\Patterns">
+      <UniqueIdentifier>{1861ebbf-d446-41bd-a07c-d0aca9488728}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{e010eb3f-8376-4e0e-b650-23a79ffc940a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data\Shaders">
+      <UniqueIdentifier>{699e124a-27ca-4c2f-b7a9-032b6db22740}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Hpp\Input\HID">
+      <UniqueIdentifier>{f892050c-57ae-4451-b7c2-d237fa9b418e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source code\Cpp\Input\HID">
+      <UniqueIdentifier>{8c14cfcd-3c8a-420c-931d-1c5645c9e00a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Custom types.hpp">
+      <Filter>Source code\Hpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Operating system\MSWindows.hpp">
+      <Filter>Source code\Hpp\Operating system</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Operating system\MSWindows messages.hpp">
+      <Filter>Source code\Hpp\Operating system</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\Key.hpp">
+      <Filter>Source code\Hpp\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\Keys.hpp">
+      <Filter>Source code\Hpp\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\Input.hpp">
+      <Filter>Source code\Hpp\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\DirectXMath extension.hpp">
+      <Filter>Source code\Hpp\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\WIC\WIC.hpp">
+      <Filter>Source code\Hpp\Graphics\WIC</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\WIC\WICFactory.hpp">
+      <Filter>Source code\Hpp\Graphics\WIC</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\DWrite\Write factory.hpp">
+      <Filter>Source code\Hpp\Graphics\DWrite</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Sprite.hpp">
+      <Filter>Source code\Hpp\Graphics\Direct2D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Icosahedron.hpp">
+      <Filter>Source code\Hpp\Graphics\Direct3D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Mesh.hpp">
+      <Filter>Source code\Hpp\Graphics\Direct3D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Quad.hpp">
+      <Filter>Source code\Hpp\Graphics\Direct3D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Texture.hpp">
+      <Filter>Source code\Hpp\Graphics\Direct3D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Patterns\Observer.hpp">
+      <Filter>Source code\Hpp\Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Patterns\State.hpp">
+      <Filter>Source code\Hpp\Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Patterns\Observable.hpp">
+      <Filter>Source code\Hpp\Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Ouput\Logging.hpp">
+      <Filter>Source code\Hpp\Output</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_item.h">
+      <Filter>Source code\Hpp\Input\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_multiple_touch.h">
+      <Filter>Source code\Hpp\Input\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_usage_text.h">
+      <Filter>Source code\Hpp\Input\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_usages.h">
+      <Filter>Source code\Hpp\Input\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_value.h">
+      <Filter>Source code\Hpp\Input\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hidp_status.h">
+      <Filter>Source code\Hpp\Input\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_button.h">
+      <Filter>Source code\Hpp\Input\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_collection.h">
+      <Filter>Source code\Hpp\Input\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_collections.h">
+      <Filter>Source code\Hpp\Input\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_device.h">
+      <Filter>Source code\Hpp\Input\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_devices.h">
+      <Filter>Source code\Hpp\Input\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_globals.h">
+      <Filter>Source code\Hpp\Input\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Direct2D.hpp">
+      <Filter>Source code\Hpp\Graphics\Direct2D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Direct3D.hpp">
+      <Filter>Source code\Hpp\Graphics\Direct3D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Camera.hpp">
+      <Filter>Source code\Hpp\Graphics\Direct3D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\DWrite\Text.hpp">
+      <Filter>Source code\Hpp\Graphics\DWrite</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\DWrite\Text box.hpp">
+      <Filter>Source code\Hpp\Graphics\DWrite</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Image.hpp">
+      <Filter>Source code\Hpp\Graphics\Direct2D</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct2D\Image.cpp">
+      <Filter>Source code\Cpp\Graphics\Direct2D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct2D\Sprite.cpp">
+      <Filter>Source code\Cpp\Graphics\Direct2D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_button.cpp">
+      <Filter>Source code\Cpp\Input\HID</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_collection.cpp">
+      <Filter>Source code\Cpp\Input\HID</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_collections.cpp">
+      <Filter>Source code\Cpp\Input\HID</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_device.cpp">
+      <Filter>Source code\Cpp\Input\HID</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_devices.cpp">
+      <Filter>Source code\Cpp\Input\HID</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_multiple_touch.cpp">
+      <Filter>Source code\Cpp\Input\HID</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_raw_device.cpp">
+      <Filter>Source code\Cpp\Input\HID</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_usages.cpp">
+      <Filter>Source code\Cpp\Input\HID</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_value.cpp">
+      <Filter>Source code\Cpp\Input\HID</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Direct3D.cpp">
+      <Filter>Source code\Cpp\Graphics\Direct3D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct2D\Direct2D.cpp">
+      <Filter>Source code\Cpp\Graphics\Direct2D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Mesh.cpp">
+      <Filter>Source code\Cpp\Graphics\Direct3D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Quad.cpp">
+      <Filter>Source code\Cpp\Graphics\Direct3D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Texture.cpp">
+      <Filter>Source code\Cpp\Graphics\Direct3D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Camera.cpp">
+      <Filter>Source code\Cpp\Graphics\Direct3D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Icosahedron.cpp">
+      <Filter>Source code\Cpp\Graphics\Direct3D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\WIC\WIC.cpp">
+      <Filter>Source code\Cpp\Graphics\WIC</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\WIC\WICFactory.cpp">
+      <Filter>Source code\Cpp\Graphics\WIC</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\Input.cpp">
+      <Filter>Source code\Cpp\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Operating System\MSWindows.cpp">
+      <Filter>Source code\Cpp\Operating system</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Ouput\Logging.cpp">
+      <Filter>Source code\Cpp\Output</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

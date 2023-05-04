@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{84380ca1-324e-4131-bc7b-e91bd0d509d2}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Custom types.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Direct2D.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Image.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Sprite.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Camera.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Direct3D.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Icosahedron.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Mesh.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Quad.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Texture.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\DirectXMath extension.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\DWrite\Text box.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\DWrite\Text.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\DWrite\Write factory.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\WIC\WIC.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\WIC\WICFactory.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hidp_status.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_button.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_collection.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_collections.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_device.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_devices.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_globals.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_item.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_multiple_touch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_usages.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_usage_text.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_value.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\Input.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\Key.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\Keys.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Operating system\MSWindows messages.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Operating system\MSWindows.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Ouput\Logging.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Patterns\Observable.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Patterns\Observer.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Patterns\State.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct2D\Direct2D.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct2D\Image.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct2D\Sprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Camera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Direct3D.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Icosahedron.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Mesh.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Quad.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Texture.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\WIC\WIC.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\WIC\WICFactory.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_button.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_collection.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_collections.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_device.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_devices.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_multiple_touch.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_raw_device.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_usages.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_value.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\Input.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Operating System\MSWindows.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Ouput\Logging.cpp" />
+  </ItemGroup>
+</Project>
