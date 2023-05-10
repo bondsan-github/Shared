@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Source code/Hpp/Custom types.hpp"
+#include "Source code/Hpp/Input/HID/HID_Usages.hpp"
 #include "Source code/Hpp/Graphics/DWrite/Text.hpp"
 
 #include <hidpi.h>
@@ -9,7 +10,7 @@ namespace HID
 {
     class Device;
 
-    class Button : public _HIDP_BUTTON_CAPS
+    class Button : public _HIDP_BUTTON_CAPS , public Usages
     {
         private:
 
@@ -25,16 +26,16 @@ namespace HID
 
             Button( Device * in_device, _HIDP_BUTTON_CAPS const & in_button_capabilities );
             
-            void text();
-            void append_text( std::wstring in_text ) { information.add(in_text); }
-            void position(const Point & in_position ) { information.position(in_position); }
-            void layout_size( const D2D1_SIZE_F & in_size ) { information.layout_size( in_size ); }
+            void collect_information();
+            void append( std::wstring text ) { information.add( text ); }
+            void position( Point const & in_position ) { information.position( in_position ); }
+            void layout_size( D2D1_SIZE_F const & size ) { information.layout_size( size ); }
 
             Point position() const { return information.position(); }
 
-            float top() const { return information.top(); }
-            float right() const { return information.right(); }
-            float width() const { return information.width();  }
+            float top() const    { return information.top();    }
+            float right() const  { return information.right();  }
+            float width() const  { return information.width();  }
             float height() const { return information.height(); }
             
             void update( RAWINPUT * in_raw_data );

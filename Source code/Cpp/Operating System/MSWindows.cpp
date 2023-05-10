@@ -15,7 +15,7 @@ MSWindows::MSWindows( Application * application )
 
 HWND MSWindows::initialise( Size in_client_size )
 {
-    if( client_size ) client_size = in_client_size;
+    if( in_client_size ) client_size_ = in_client_size;
     else fullscreen = true;
 
     instance = GetModuleHandleW( 0 );
@@ -57,13 +57,13 @@ HWND MSWindows::initialise( Size in_client_size )
 
     if( fullscreen )
     {
-        client_size.width( desktop.right - desktop.left );
-        client_size.height( desktop.bottom - desktop.top );
+        client_size_.width( desktop.right - desktop.left );
+        client_size_.height( desktop.bottom - desktop.top );
     }
     else
     {
-        position_top_left.x( ( desktop.right - client_size.width() ) / 2 );
-        position_top_left.y( ( desktop.bottom - client_size.height() ) / 2 );
+        position_top_left.x( ( desktop.right - client_size_.width() ) / 2 );
+        position_top_left.y( ( desktop.bottom - client_size_.height() ) / 2 );
     }
     
     /*
@@ -77,8 +77,8 @@ HWND MSWindows::initialise( Size in_client_size )
 
     RECT adjusted_window_size {};
 
-    adjusted_window_size.right  = static_cast< long >( client_size.width() );
-    adjusted_window_size.bottom = static_cast< long >( client_size.height() );
+    adjusted_window_size.right  = static_cast< long >( client_size_.width() );
+    adjusted_window_size.bottom = static_cast< long >( client_size_.height() );
 
     //bool adjusted = AdjustWindowRect( & adjusted_window_size , WS_OVERLAPPEDWINDOW , FALSE );
         
@@ -88,8 +88,8 @@ HWND MSWindows::initialise( Size in_client_size )
                                         transparent ? window_style_transparent : window_style ,
                                         position_top_left.x() ,
                                         position_top_left.y() ,
-                                        client_size.width() ,
-                                        client_size.height() ,
+                                        client_size_.width() ,
+                                        client_size_.height() ,
                                         nullptr, //HWND_DESKTOP ,
                                         menu ,
                                         instance ,
@@ -99,7 +99,7 @@ HWND MSWindows::initialise( Size in_client_size )
  
     ShowWindow( window_principle , SW_SHOWNORMAL ); // set show state
     
-    get_window_rectangles();
+    //window_rectangles();
 
     return window_principle;
 }
@@ -108,7 +108,7 @@ void MSWindows::window_size_changed( uint width , uint height )
 {
     Size new_size( width , height );
 
-    if( new_size not_eq client_size )
+    if( new_size not_eq client_size_ )
     {
         application->window_size_change( width , height );
     }
@@ -118,7 +118,7 @@ void MSWindows::window_size_changed( uint width , uint height )
     }
 }
 
-RECT MSWindows::get_client_position()
+RECT MSWindows::client_position()
 {
     RECT position {};
 
@@ -128,7 +128,7 @@ RECT MSWindows::get_client_position()
     return position;
 }
 
-Size MSWindows::get_client_size()
+Size MSWindows::client_size()
 {
     RECT area {};
     
@@ -137,7 +137,7 @@ Size MSWindows::get_client_size()
     return { area.right - area.left , area.bottom - area.top };
 }
 
-HWND MSWindows::get_window() const
+HWND MSWindows::window() const
 {
     return window_principle;
 }
@@ -268,6 +268,19 @@ LRESULT CALLBACK MSWindows::message_handler( HWND window , UINT message , WPARAM
     return DefWindowProcW( window , message , wParam , lParam );
 
 } // message_handler
+
+void MSWindows::register_input_device( ushort page , ushort usage )
+{
+    RAWINPUTDEVICE raw_device
+    {
+        .usUsagePage = page ,
+        .usUsage     = usage ,
+        .dwFlags     = RIDEV_DEVNOTIFY , // | RIDEV_EXINPUTSINK | RIDEV_INPUTSINK // attached and detached
+        .hwndTarget  = window_principle
+    };
+
+    RegisterRawInputDevices( &raw_device , 1 , sizeof( RAWINPUTDEVICE ) );
+}
 
 MSWindows::~MSWindows()
 {

@@ -16,6 +16,8 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Application.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Custom types.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Circle.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Circle2D.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Drawable2D.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Graphics2D.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Factory2D.hpp" />
@@ -31,7 +33,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Size.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\WIC\WIC.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\WIC\WICFactory.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\Multiple touch.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\HIDP_Status.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\HID_Button.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\HID_Collection.hpp" />
@@ -55,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Application.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Circle.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct2D\Graphics2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct2D\Image.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct2D\Rectangle2D.cpp" />
@@ -70,8 +72,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\HID_Collections.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\HID_Device.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\HID_Devices.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\Multiple touch.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\HID_Raw_device.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\HID_Usages.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\HID_Value.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\Input.cpp" />

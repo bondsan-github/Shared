@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Source code/Hpp/Input/HID/HID_Device.hpp"
 #include "Source code/Hpp/Input/HID/HID_Globals.hpp"
+#include "Source code/Hpp/Input/HID/HID_Device.hpp"
+
 #include "Source code/Hpp/Graphics/DWrite/Text.hpp"
 
 //#include <windows.h> // RAWINPUTDEVICELIST
@@ -14,7 +15,7 @@ namespace HID
         private:
             
             std::vector< RAWINPUTDEVICELIST > raw_device_list {};
-            std::vector< Device >         input_devices   {};
+            std::vector< Device >             input_devices   {};
 
             Text information {};
 

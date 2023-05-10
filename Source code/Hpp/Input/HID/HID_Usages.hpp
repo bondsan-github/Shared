@@ -20,7 +20,7 @@ namespace HID
             std::wstring type( uint in_type );
             //std::wstring type( uint in_page , int in_usage );
 
-        private:
+        protected:
 
             const std::vector< std::wstring > pages
             {
@@ -47,7 +47,7 @@ namespace HID
             };
 
             // hid 6.2.2.6
-            const enum class types : uint // char
+            const enum class Types : uint // char
             {
                 physical ,                   // 0x00
                 application ,                // 0x01

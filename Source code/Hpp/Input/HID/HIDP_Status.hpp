@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace hid
+namespace HID
 {
    class hidp_status
    {

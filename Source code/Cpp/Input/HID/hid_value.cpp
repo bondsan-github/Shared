@@ -1,18 +1,16 @@
-#include "..\headers\hid_value.h"
+#include "Source code/Hpp/Input/HID/HID_Value.hpp"
 
-#include "..\headers\locate.h"
-#include "..\headers\hid_device.h"
-#include "..\headers\utility.h"
+#include "Source code/Hpp/Input/HID/HID_Device.hpp"
 
 #include <unordered_map>
 
 using std::wstring;
 using std::to_wstring;
+using std::vector;
 
-namespace hid
+namespace HID
 {
-
-    hid_value::hid_value( hid_device * const in_device ,  _HIDP_VALUE_CAPS const & construct_value )
+    Value::Value( Device * const in_device ,  _HIDP_VALUE_CAPS const & construct_value )
     {
         if( this not_eq &construct_value )
         {
@@ -69,9 +67,9 @@ namespace hid
         }
     }
 
-    void hid_value::set_information_text()
+    void Value::collect_information()
     {
-        content = locate::get_usages().page( UsagePage );
+        content = page( UsagePage );
 
         if( IsRange )
         {
@@ -79,14 +77,14 @@ namespace hid
 
             for( uint button_usage = Range.UsageMin; button_usage <= Range.UsageMax; button_usage++ )
             {
-                content += locate::get_usages().usage( UsagePage , button_usage );
+                content += usage( UsagePage , button_usage );
                 content += L",";
             }
         }
         else
         {
             content += L'\n';
-            content += locate::get_usages().usage( UsagePage , NotRange.Usage );
+            content += usage( UsagePage , NotRange.Usage );
         }
 
         // UNsigned long 32 bits / 4 bytes, only need last 16 bits / 2 bytes
@@ -128,7 +126,7 @@ namespace hid
         uint high_nible = ( low_byte & 0xF0 ) >> 4;//; = system
         uint low_nible  = low_byte & 0xF;
         
-        std::unordered_map< uint8_t , std::wstring > unit_system // high_nible
+        std::unordered_map< uint8_t , wstring > unit_system // high_nible
         {
             { 0x0  , L"system"             } , // 0b0       , 0x0  , 0 
             { 0x1  , L"length"             } , // 0b1       , 0x1  , 1
@@ -164,7 +162,7 @@ namespace hid
             content += L'\n' + unit_system.at( high_nible );
         }
 
-        std::vector< std::vector < std::wstring > > units
+        vector< vector < wstring > > units
         {
             {  // 0 = none
             } ,
@@ -263,23 +261,24 @@ namespace hid
         content += L"\nreport id\t: " + to_wstring( ReportID );
         content += L"\nvalue\t:" + to_wstring( value_unsigned );
 
-        information.set_content( content );
-        information.set_font_size( 10.0f );
-        information.set_font_colour( D2D1::ColorF::Yellow );
-        information.set_layout_size( { 200.0f, 200.0f } );
+        information.set( content );
+        information.size( 10.0f );
+        information.colour( D2D1::ColorF::Yellow );
+        information.layout_size( { 200.0f, 200.0f } );
 
         //Resolution = ( Logical Maximum – Logical Minimum ) / ( ( Physical Maximum – Physical Minimum ) *
         //                                                      ( 10 Unit Exponent ) )
     }
 
-    void hid_value::update_information_text() 
+    void Value::update_information() 
     { 
         content = L"\nvalue\t:" + to_wstring( value_unsigned );
-        information.set_content( content );
+        
+        information.set( content );
     }
 
-    //void hid_value::update( RAWIHID in_raw_data )
-    void hid_value::update( RAWINPUT * in_raw_data )
+    //void Value::update( RAWIHID in_raw_data )
+    void Value::update( RAWINPUT * in_raw_data )
     {
         // if( not IsRange )
         NTSTATUS status = HidP_GetUsageValue( HidP_Input ,// unsigned output //
@@ -292,10 +291,9 @@ namespace hid
                                   reinterpret_cast< char * >( in_raw_data->data.hid.bRawData ) , //BYTE uchar to char // M.S. your data types don't match up !! :(
                                   in_raw_data->data.hid.dwSizeHid * in_raw_data->data.hid.dwCount );
 
-        //if( status != HIDP_STATUS_SUCCESS ) error_exit( L"hid_value:get_value");
+        //if( status != HIDP_STATUS_SUCCESS ) error_exit( L"Value:get_value");
         
-        //update_information_text();
-        set_information_text();
+        update_information();
         
         /*
         if( UsagePage == 0x01 and NotRange.Usage == 0x31 )// generic : Y

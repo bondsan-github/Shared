@@ -1,6 +1,9 @@
 #include "Source code/Hpp/Input/HID/HID_Button.hpp"
 
 #include "Source code/Hpp/Input/HID/HID_Usages.hpp"
+#include "Source code/Hpp/Input/HID/HID_Device.hpp"
+
+#include <hidusage.h>
 
 #include <bitset>
 
@@ -40,7 +43,7 @@ namespace HID
         }
     }
    
-    void Button::text()
+    void Button::collect_information()
     {
         if( IsRange )
         {
@@ -48,13 +51,13 @@ namespace HID
 
             for( uint button_usage = Range.UsageMin; button_usage <= Range.UsageMax; button_usage++ )
             {
-                content += locate::get_usages().usage( UsagePage , button_usage );
+                content += usage( UsagePage , button_usage );
                 content += L",";
             }
         }
         else
         {
-            content += L'\n' + locate::get_usages().usage( UsagePage , NotRange.Usage );
+            content += L'\n' + usage( UsagePage , NotRange.Usage );
         }
 
         //content += IsAlias ? L"alias" : L"not aliased"; // does button have multiple usages
@@ -95,16 +98,17 @@ namespace HID
         content += L"\ndata index\t: " + std::to_wstring( NotRange.DataIndex );
         content += L"\nreport id\t: " + std::to_wstring( ReportID ); // converted from hex to decimal
         content += on ? L"\non" : L"\noff";
-        information.set_content( content );
-        information.set_font_size( 10.0f );
-        information.set_font_colour( D2D1::ColorF::Yellow );
-        information.set_layout_size( { 200.0f, 200.0f } );
+
+        information.set( content );
+        information.size( 10.0f );
+        information.colour( D2D1::ColorF::Yellow );
+        information.layout_size( { 200.0f, 200.0f } );
     };
 
-    void Button::update_information_text()
+    void Button::update_information()
     {
         content = on ? L"\non" : L"\noff";
-        information.set_content( content );
+        information.set( content );
     }
 
     void Button::update( RAWINPUT * in_raw_data )
@@ -118,9 +122,9 @@ namespace HID
         HidP_GetUsages( HidP_Input , // requires complete input report and not only rawhid
                         UsagePage ,
                         LinkCollection ,
-                        &usages ,
-                        &usages_amount ,
-                        reinterpret_cast< PHIDP_PREPARSED_DATA >( device->get_data() ) ,
+                        & usages ,
+                        & usages_amount ,
+                        reinterpret_cast< PHIDP_PREPARSED_DATA >( device->data() ) ,
                         reinterpret_cast< char * >( in_raw_data->data.hid.bRawData ) , //BYTE uchar to char // M.S. your data types don't match up !! :(
                         in_raw_data->data.hid.dwSizeHid * in_raw_data->data.hid.dwCount );
 
@@ -130,7 +134,6 @@ namespace HID
         }
         else on = false;
 
-        //update_information_text();
-        set_information_text();
+        update_information();
     }
 }

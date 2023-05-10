@@ -1,4 +1,4 @@
-#include "..\headers\hid_device.h"
+#include "..\headers\Device.h"
 
 #include "..\headers\utility.h"
 #include "..\headers\locate.h"
@@ -13,9 +13,9 @@
 
 namespace hid
 {
-    hid_device::hid_device( HANDLE in_device )
+    Device::Device( HANDLE in_device )
     {
-        //OutputDebugString( L"hid_device::parametertised constructor\n" );
+        //OutputDebugString( L"Device::parametertised constructor\n" );
         //https://learn.microsoft.com/en-us/windows-hardware/drivers/hid/
 
         raw_handle = in_device;
@@ -52,17 +52,17 @@ namespace hid
         // contacts.resize( contacts_maximum );
     }
 
-    bool hid_device::is_multi_touch()
+    bool Device::is_multi_touch()
     {
         return ( page == HID_USAGE_PAGE_DIGITIZER && usage == HID_USAGE_DIGITIZER_TOUCH_PAD );
     }
 
-    hid_device::~hid_device()
+    Device::~Device()
     {
         //if( device_pointer ) CloseHandle( device_pointer );
     }
 
-    std::wstring hid_device::get_path()
+    std::wstring Device::get_path()
     {
         // get device path character amount
         uint return_value = GetRawInputDeviceInfoW( raw_handle , request.path , 0 , &path_char_amount );
@@ -82,7 +82,7 @@ namespace hid
         return path;
     }
 
-    void hid_device::collect_information()
+    void Device::collect_information()
     {
         NTSTATUS result{ HIDP_STATUS_INVALID_PREPARSED_DATA };
 
@@ -239,7 +239,7 @@ namespace hid
         debug_text.set_layout_size( { 500, 100 });
     }
 
-    void hid_device::set_text_device()
+    void Device::set_text_device()
     {
         std::wstring content;
 
@@ -270,12 +270,12 @@ namespace hid
         // += physical
     }
 
-    void hid_device::set_if_display_information( const bool in_bool )
+    void Device::set_if_display_information( const bool in_bool )
     {
         draw_information = in_bool;
     }
 
-    void hid_device::update()
+    void Device::update()
     {
         /*
         HANDLE read_file_handle =CreateFileFromAppW( path.c_str(),
@@ -317,7 +317,7 @@ namespace hid
                 //data.clear();
     }
 
-    void hid_device::update/*_unbufferd*/( RAWINPUT * input_report )
+    void Device::update/*_unbufferd*/( RAWINPUT * input_report )
     {
         //contact_identifier = value_contact_identifier->get_value();
         //collections.update_input( input_report );
@@ -332,14 +332,14 @@ namespace hid
         OutputDebugStringW( message.data() );
     }
 
-    void hid_device::update_contact( ulong in_identifier , float in_x , float in_y )
+    void Device::update_contact( ulong in_identifier , float in_x , float in_y )
     {
         if( in_identifier >= 0 and in_identifier < contacts.size() )
             contacts.at( in_identifier ).update( static_cast< float >( in_x ) ,
                                                  static_cast< float >( in_y ) );
     }
 
-    void hid_device::update_buffered( RAWINPUT ** in_rawinput_array , uint in_report_amount )
+    void Device::update_buffered( RAWINPUT ** in_rawinput_array , uint in_report_amount )
     {
         float x  { 0 };
         float y  { 0 };
@@ -378,7 +378,7 @@ namespace hid
         //OutputDebugStringW( message.data() );
     }
 
-    ulong hid_device::get_value_unscaled( ushort in_page , ushort in_usage , RAWHID * in_input )
+    ulong Device::get_value_unscaled( ushort in_page , ushort in_usage , RAWHID * in_input )
     {
         ulong value{ 0ul };
 
@@ -393,7 +393,7 @@ namespace hid
         return value;
     }
 
-    long hid_device::get_value_scaled( ushort in_page , ushort in_usage , RAWINPUT in_input )
+    long Device::get_value_scaled( ushort in_page , ushort in_usage , RAWINPUT in_input )
     {
         long value{ 0 };
 
@@ -408,7 +408,7 @@ namespace hid
         return value;
     }
 
-    void hid_device::draw()
+    void Device::draw()
     {
         // 1. transparent full screen, draw contacts
 

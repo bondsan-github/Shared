@@ -5,7 +5,7 @@
 #include "Source code/Hpp/Input/HID/HID_Globals.hpp"
 //#include "Source code/Hpp/Input/HID/HID_Raw_device.hpp"
 #include "Source code/Hpp/Input/HID/HID_Collection.hpp"
-#include "Source code/Hpp/Input/HID/HID_Collections.hpp"
+#include "Source code/Hpp/Input/HID/Collections.hpp"
 #include "Source code/Hpp/Input/HID/HID_Usages.hpp"
 #include "Source code/Hpp/Input/HID/HID_Button.hpp"   
 #include "Source code/Hpp/Input/HID/HID_Value.hpp"

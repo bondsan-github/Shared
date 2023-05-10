@@ -1,11 +1,8 @@
-#include "..\headers\hid_collection.h"
+#include "Source code/Hpp/Input/HID/HID_Collection.hpp"
 
-#include "..\headers\hid_usages.h"
-#include "..\headers\hid_item.h"
-
-namespace hid
+namespace HID
 {
-    void hid_collection::operator = ( const _HIDP_LINK_COLLECTION_NODE & in_node )
+    void Collection::operator = ( const _HIDP_LINK_COLLECTION_NODE & in_node )
     {
         LinkUsage        = in_node.LinkUsage;
         LinkUsagePage    = in_node.LinkUsagePage;
@@ -17,7 +14,7 @@ namespace hid
         IsAlias          = in_node.IsAlias; // This link node is an alias of the next link node.
     }
 
-    void hid_collection::operator = ( _HIDP_LINK_COLLECTION_NODE && in_node ) noexcept
+    void Collection::operator = ( _HIDP_LINK_COLLECTION_NODE && in_node ) noexcept
     {
         LinkUsage        = std::move( in_node.LinkUsage );
         LinkUsagePage    = std::move( in_node.LinkUsagePage );
@@ -29,123 +26,125 @@ namespace hid
         IsAlias          = std::move( static_cast< bool >( in_node.IsAlias ) ); // This link node is an alias of the next link node.
     }
 
-    void hid_collection::add_button( item_type in_type , hid_button & in_button )
+    void Collection::add_button( item_type type , Button & button )
     {
-        in_button.set_information_text();
+        button.collect_information();
 
-        switch( in_type )
+        switch( type )
         {
             case item_type::input:
             {
-                input_buttons.push_back( in_button );
+                input_buttons.push_back( button );
             } break;
 
             case item_type::output:
             {
-                output_buttons.push_back( in_button );
+                output_buttons.push_back( button );
             } break;
 
             case item_type::feature:
             {
-                feature_buttons.push_back( in_button );
+                feature_buttons.push_back( button );
             }
         }
     }
 
-    void hid_collection::add_value( item_type in_type , hid_value & in_value )
+    void Collection::add_value( item_type type , Value & value )
     {
-        in_value.set_information_text();
+        value.collect_information();
 
-        switch( in_type )
+        switch( type )
         {
             case item_type::input:
             {
-                input_values.push_back( in_value );
+                input_values.push_back( value );
             } break;
 
             case item_type::output:
             {
-                output_values.push_back( in_value );
+                output_values.push_back( value );
             } break;
 
             case item_type::feature:
             {
-                feature_values.push_back( in_value );
+                feature_values.push_back( value );
             } break;
         }
     }
 
-    void hid_collection::set_information_text()
+    void Collection::collect_information()
     {
         std::wstring text;
         
         text += L"page\t: ";
-        text += locate::get_usages().page( LinkUsagePage );
+        text += page( LinkUsagePage );
         text += L"\nusage\t: ";
-        text += locate::get_usages().usage( LinkUsagePage , LinkUsage );
+        text += usage( LinkUsagePage , LinkUsage );
         text += L"\ncollection\t: ";
-        text += locate::get_usages().collection_type( CollectionType );
+        text += type( CollectionType );
         text += IsAlias ? L"\nis alias" : L"\nnot alias";
 
-        information.set_content( text );
-        information.set_layout_size( { 200.0f, 100.0f } );
-        information.set_font_size( 10.0f );
-        information.set_font_colour( D2D1::ColorF::Yellow );
+        information.set( text );
+        information.layout_size( { 200.0f, 100.0f } );
+        information.size( 10.0f );
+        information.colour( D2D1::ColorF::Yellow );
     }
 
-    void hid_collection::set_text_position( const vertex & in_position )
+    void Collection::position( Point const & in_position )
     {
-        information.set_position_top_left( in_position );
+        information.position( in_position );
     }
 
-    void hid_collection::set_item_positions()
+    void Collection::positions()
     {
         //RECT client_size {};
         //client_size = locate::get_windows().get_client_rectangle();
         //ulong spacer_x = ( client_size.right - client_size.left ) / ( input_buttons.size() + 1 );
         //ulong spacer_y = ( client_size.bottom - client_size.top ) / ( input_buttons.size() + 1);
 
-        vertex position //spacer = screen_width / button_amount
+        Point position //spacer = screen_width / button_amount
         {
-            information.get_right() + 20.0f, // x 
-            information.get_top()    // y
+            information.right() + 20.0f, // x 
+            information.top()    // y
         };
 
         // place input buttons [collection]->[in buttons]
         auto button_itr = input_buttons.begin();
+
         for( ; button_itr < input_buttons.end() ; button_itr++ )
         {
-            button_itr->append_information_text( L"\ninput button" );
+            button_itr->append( L"\ninput button" );
 
             // get previous item text right side
             if( button_itr not_eq input_buttons.begin() )
-                position.x = ( button_itr - 1 )->get_text_right() + 20.0f;
+                position.x( ( button_itr - 1 )->right() + 20.0f );
             
-            button_itr->set_text_position( position );
+            button_itr->position( position );
         }
         // --------------------------------------------------------------------
 
         // place input values [collection]->[in buttons]->[in values]
         if( input_buttons.empty() )
         {
-            position = { information.get_right() + 20.0f, information.get_top() };
+            position = { information.right() + 20.0f, information.top() };
         }
         else
         {   // place after input buttons
-            position.x = input_buttons.back().get_text_right() + 20.f;
-            position.y = input_buttons.back().get_text_top();
+            position.x( input_buttons.back().right() + 20.f );
+            position.y( input_buttons.back().top() );
         }
 
         auto value_itr = input_values.begin();
+
         for( ; value_itr < input_values.end() ; value_itr++ )
         {
-            value_itr->append_information_text( L"\ninput value" );
+            value_itr->append( L"\ninput value" );
 
              // get previous item text right side
             if( value_itr not_eq input_values.begin() )
-                position.x = ( value_itr - 1 )->get_text_right() + 20.0f;
+                position.x( ( value_itr - 1 )->right() + 20.0f );
 
-            value_itr->set_text_position( position );
+            value_itr->position( position );
         }
         // --------------------------------------------------------------------
 
@@ -153,28 +152,29 @@ namespace hid
         if( input_values.empty() )
         {
             if( input_buttons.empty() )
-                position = { information.get_right() + 20.0f, information.get_top() };
+                position = { information.right() + 20.0f, information.top() };
             else
             {   // place after input buttons
-                position.x = input_buttons.back().get_text_right() + 20.f;
-                position.y = input_buttons.back().get_text_top();
+                position.x( input_buttons.back().right() + 20.f );
+                position.y( input_buttons.back().top() );
             }
         }
         else
         {   // place after input values
-            position.x = input_values.back().get_text_right() + 20.f;
-            position.y = input_values.back().get_text_top();
+            position.x( input_values.back().right() + 20.f );
+            position.y( input_values.back().top() );
         }
 
         button_itr = output_buttons.begin();
+
         for( ; button_itr < output_buttons.end() ; button_itr++ )
         {
-            button_itr->append_information_text( L"\noutput button" );
+            button_itr->append( L"\noutput button" );
 
             if( button_itr not_eq output_buttons.begin() )
-                position.x = ( button_itr - 1 )->get_text_right() + 20.0f;
+                position.x( ( button_itr - 1 )->right() + 20.0f );
 
-            button_itr->set_text_position( position );
+            button_itr->position( position );
         }
         // --------------------------------------------------------------------
 
@@ -185,35 +185,36 @@ namespace hid
             if( input_values.empty() )
             {
                 if( input_buttons.empty() )
-                    position = { information.get_right() + 20.0f, information.get_top() };
+                    position = { information.right() + 20.0f, information.top() };
                 else
                 {
-                    position.x = input_buttons.back().get_text_right() + 20.f;
-                    position.y = input_buttons.back().get_text_top();
+                    position.x( input_buttons.back().right() + 20.f );
+                    position.y( input_buttons.back().top() );
                 }
             }
             else 
             {
-                position.x = input_values.back().get_text_right() + 20.f;
-                position.y = input_values.back().get_text_top();
+                position.x( input_values.back().right() + 20.f );
+                position.y( input_values.back().top() );
             }
 
         }
         else
         {   // place after outputbuttons
-            position.x = output_buttons.back().get_text_right() + 20.f;
-            position.y = output_buttons.back().get_text_top();
+            position.x( output_buttons.back().right() + 20.f );
+            position.y( output_buttons.back().top() );
         }
 
         value_itr = output_values.begin();
+
         for( ; value_itr < output_values.end() ; value_itr++ )
         {
-            button_itr->append_information_text( L"\noutput value" );
+            button_itr->append( L"\noutput value" );
 
             if( value_itr not_eq output_values.begin() )
-                position.x = ( value_itr - 1 )->get_text_right() + 20.0f;
+                position.x( ( value_itr - 1 )->right() + 20.0f );
 
-            value_itr->set_text_position( position );
+            value_itr->position( position );
         }
         // --------------------------------------------------------------------
 
@@ -226,41 +227,40 @@ namespace hid
                 if( input_values.empty() )
                 {
                     if( input_buttons.empty() )
-                        position ={ information.get_right() + 20.0f, information.get_top() };
+                        position = { information.right() + 20.0f, information.top() };
                     else
                     {
-                        position.x = input_buttons.back().get_text_right() + 20.f;
-                        position.y = input_buttons.back().get_text_top();
+                        position.x( input_buttons.back().right() + 20.f );
+                        position.y( input_buttons.back().top() );
                     }
                 }
                 else
                 {
-                    position.x = input_values.back().get_text_right() + 20.f;
-                    position.y = input_values.back().get_text_top();
+                    position.x( input_values.back().right() + 20.f );
+                    position.y( input_values.back().top() );
                 }
-
             }
             else
             {
-                position.x = output_buttons.back().get_text_right() + 20.f;
-                position.y = output_buttons.back().get_text_top();
+                position.x( output_buttons.back().right() + 20.f );
+                position.y( output_buttons.back().top() );
             }
         }
         else
         {   // place after output buttons
-            position.x = output_values.back().get_text_right() + 20.f;
-            position.y = output_values.back().get_text_top();
+            position.x( output_values.back().right() + 20.f );
+            position.y( output_values.back().top() );
         }
 
         button_itr = feature_buttons.begin();
         for( ; button_itr < feature_buttons.end() ; button_itr++ )
         {
-            button_itr->append_information_text( L"\nfeature button" );
+            button_itr->append( L"\nfeature button" );
 
             if( button_itr not_eq feature_buttons.begin() )
-                position.x = ( button_itr - 1 )->get_text_right() + 20.0f;
+                position.x( ( button_itr - 1 )->right() + 20.0f );
 
-            button_itr->set_text_position( position );
+            button_itr->position( position );
         }
         // --------------------------------------------------------------------
 
@@ -275,94 +275,93 @@ namespace hid
                     if( input_values.empty() )
                     {
                         if( input_buttons.empty() )
-                            position ={ information.get_right() + 20.0f, information.get_top() };
+                            position ={ information.right() + 20.0f, information.top() };
                         else
                         {
-                            position.x = input_buttons.back().get_text_right() + 20.f;
-                            position.y = input_buttons.back().get_text_top();
+                            position.x( input_buttons.back().right() + 20.f );
+                            position.y( input_buttons.back().top() );
                         }
                     }
                     else
                     {
-                        position.x = input_values.back().get_text_right() + 20.f;
-                        position.y = input_values.back().get_text_top();
+                        position.x( input_values.back().right() + 20.f );
+                        position.y( input_values.back().top() );
                     }
-
                 }
                 else
                 {
-                    position.x = output_buttons.back().get_text_right() + 20.f;
-                    position.y = output_buttons.back().get_text_top();
+                    position.x( output_buttons.back().right() + 20.f );
+                    position.y( output_buttons.back().top() );
                 }
             }
             else
             {   // place after outputbuttons
-                position.x = output_values.back().get_text_right() + 20.f;
-                position.y = output_values.back().get_text_top();
+                position.x( output_values.back().right() + 20.f );
+                position.y( output_values.back().top() );
             }
         }
         else
         {   // place output buttons after output_buttons
-            position.x = feature_buttons.back().get_text_right() + 20.f;
-            position.y = feature_buttons.back().get_text_top();
+            position.x( feature_buttons.back().right() + 20.f );
+            position.y( feature_buttons.back().top() );
         }
 
         value_itr = feature_values.begin();
         for( ; value_itr < feature_values.end() ; value_itr++ )
         {
-            value_itr->append_information_text( L"\nfeature value" );
+            value_itr->append( L"\nfeature value" );
 
             if( value_itr not_eq feature_values.begin() )
-                position.x = ( value_itr - 1 )->get_text_right() + 20.0f;
+                position.x( ( value_itr - 1 )->right() + 20.0f );
 
-            value_itr->set_text_position( position );
+            value_itr->position( position );
         }
         // --------------------------------------------------------------------
     }
 
-    void hid_collection::update_input( RAWINPUT * in_raw_data )
+    void Collection::update( RAWINPUT * in_raw_data )
     {
         for( auto & button : input_buttons ) button.update( in_raw_data );
         for( auto & value  : input_values  ) value.update( in_raw_data );
     }
 
-    void hid_collection::draw() const
+    void Collection::draw()
     {
         information.draw();
 
-        for( const auto & button : input_buttons  ) button.draw();
-        for( const auto & value  : input_values   ) value.draw();
+        for( auto & button : input_buttons  ) button.draw();
+        for( auto & value  : input_values   ) value.draw();
         
-        for( const auto & button : output_buttons ) button.draw();
-        for( const auto & value  : output_values  ) value.draw();
+        for( auto & button : output_buttons ) button.draw();
+        for( auto & value  : output_values  ) value.draw();
 
-        for( const auto & button : feature_buttons ) button.draw();
-        for( const auto & value  : feature_values  ) value.draw();
+        for( auto & button : feature_buttons ) button.draw();
+        for( auto & value  : feature_values  ) value.draw();
     }
 
-    range hid_collection::get_range( const ushort & in_page ,
-                                     const ushort & in_usage ,
-                                     const report_type & in_report_type ,
-                                     const value_type & in_value_type )
+    /*Range Collection::range(ushort page ,
+                             ushort usage ,
+                             item_type report_type ,
+                             Types value_type )
     {
-        std::vector<hid_value>::const_iterator vector_iterator {};
-        std::vector<hid_value>::const_iterator vector_end {};
+        std::vector< Value >::const_iterator vector_iterator {};
+        std::vector< Value >::const_iterator vector_end {};
 
-        switch( in_report_type )
+        switch( report_type )
         {
-            case report_type::input:
+            case item_type::input:
             {
                 vector_iterator = input_values.cbegin();
                 vector_end = input_values.cend();
             } break;
 
-            case report_type::output:
+            case item_type::output:
             {
                 vector_iterator = output_values.cbegin();
                 vector_end = output_values.cend();
             } break;
 
-            case report_type::feature:
+            case item_type::feature:
             {
                 vector_iterator = feature_values.cbegin();
                 vector_end = feature_values.cend();
@@ -375,31 +374,31 @@ namespace hid
 
         for( ; vector_iterator != vector_end ; vector_iterator++ )
         {
-            if( in_page == vector_iterator->UsagePage and in_usage == vector_iterator->Range.UsageMin )
+            if( page == vector_iterator->UsagePage and usage == vector_iterator->Range.UsageMin )
             {
-                switch( in_value_type )
+                switch( value_type )
                 {
-                    case value_type::logical:
+                    case Types::logical:
                         return { vector_iterator->LogicalMin , vector_iterator->LogicalMax };
                     break;
 
-                    case value_type::physical:
+                    case Types::physical:
                         return { vector_iterator->PhysicalMin , vector_iterator->PhysicalMax };
                     break;
 
-                    case value_type::usage:
+                    case Types::usage:
                         return { vector_iterator->Range.UsageMin , vector_iterator->Range.UsageMax };
                     break;
 
-                    case value_type::string:
+                    case Types::string:
                         return { vector_iterator->Range.StringMin, vector_iterator->Range.StringMax };
                     break;
 
-                    case value_type::disignator:
+                    case Value_type::designator:
                         return { vector_iterator->Range.DesignatorMin , vector_iterator->Range.DesignatorMax };
                     break;
 
-                    case value_type::data_index:
+                    case Value_type::data_index:
                         return { vector_iterator->Range.DataIndexMin , vector_iterator->Range.DataIndexMax };
                     break;
                 } // switch in_value_type
@@ -410,9 +409,10 @@ namespace hid
 
         return { 0 , 0 }; // vector empty
     }
+    */
 
     /*
-    uint hid_collection::get_contact_amount()
+    uint Collection::get_contact_amount()
     {
         uint amount { 0 };
 
@@ -428,7 +428,7 @@ namespace hid
         return amount;
     }
 
-    uint hid_collection::get_contact_identifier()
+    uint Collection::get_contact_identifier()
     {
         uint identifier { 0 };
 
@@ -444,7 +444,7 @@ namespace hid
         return identifier;
     }
 
-    uint hid_collection::get_x()
+    uint Collection::get_x()
     {
         uint x { 0 };
 
@@ -460,7 +460,7 @@ namespace hid
         return x;
     }
 
-    uint hid_collection::get_y()
+    uint Collection::get_y()
     {
         uint y { 0 };
 
@@ -476,4 +476,5 @@ namespace hid
         return y;
     }
     */
-}
+
+} // namespace HID

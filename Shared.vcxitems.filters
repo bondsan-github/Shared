@@ -162,9 +162,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Image.hpp">
       <Filter>Source code\Hpp\Graphics\Direct2D</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\Multiple touch.hpp">
-      <Filter>Source code\Hpp\Input\HID</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Application.hpp">
       <Filter>Source code\Hpp</Filter>
     </ClInclude>
@@ -192,6 +189,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Size.hpp">
       <Filter>Source code\Hpp\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Circle.hpp">
+      <Filter>Source code\Cpp\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Circle2D.hpp">
+      <Filter>Source code\Hpp\Graphics\Direct2D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Precision multiple touch\Source code\Hpp\Multiple touch.hpp">
+      <Filter>Source code\Hpp\Input\HID</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct2D\Image.cpp">
@@ -213,12 +219,6 @@
       <Filter>Source code\Cpp\Input\HID</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\HID_Devices.cpp">
-      <Filter>Source code\Cpp\Input\HID</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\Multiple touch.cpp">
-      <Filter>Source code\Cpp\Input\HID</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\HID_Raw_device.cpp">
       <Filter>Source code\Cpp\Input\HID</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\HID_Usages.cpp">
@@ -265,6 +265,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\DWrite\Text.cpp">
       <Filter>Source code\Cpp\Graphics\DWrite</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Circle.cpp">
+      <Filter>Source code\Cpp\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,43 +1,45 @@
 #pragma once
 
-#include "..\headers\custom_types.h"
-#include "..\headers\text_d2d.h"
+#include "Source code/Hpp/Custom types.hpp"
+
+#include "Source code/Hpp/Graphics/DWrite/Text.hpp"
+#include "Source code/Hpp/Input/HID/HID_Usages.hpp"
 
 #include <hidpi.h>
 #include <string>
 
-namespace hid
+namespace HID
 {
-    class hid_device;
+    class Device;
 
-    class hid_value : public _HIDP_VALUE_CAPS
+    class Value : public _HIDP_VALUE_CAPS , public Usages
     {
         private:
             
-            text_d2d information {};
+            Text         information {};
             std::wstring content {};
-            ulong value_unsigned { 0ul }; // = 0xffff'ffff
-            long value_signed { -1 };
+            ulong        value_unsigned { 0ul }; // = 0xffff'ffff
+            long         value_signed { -1 };
 
-            hid_device * device { nullptr };
+            Device * device {};
 
         public:
 
-            hid_value( hid_device * const in_device , const _HIDP_VALUE_CAPS & construct_value );
+            Value( Device * const in_device , _HIDP_VALUE_CAPS const & construct_value );
 
-            void  set_information_text();
-            void  set_text_position( const vertex & in_position ) { information.set_position_top_left( in_position ); }
-            void  append_information_text( std::wstring in_text ) { information.add_content( in_text ); }
+            void  position( Point const & in_position ) { information.position( in_position ); }
+            void  append( std::wstring in_text ) { information.add( in_text ); }
 
-            float get_text_right() const { return information.get_right(); }
-            float get_text_top()   const { return information.get_top(); }
+            float right() const { return information.right(); }
+            float top()   const { return information.top(); }
 
             void  update( RAWINPUT * in_raw_data );
-            void  update_information_text();
+            void  collect_information();
+            void  update_information();
 
             //hid_device * get_device() const { return device; }
             long  get_value() const { return value_signed; }
 
-            void  draw() const { information.draw(); }
+            void  draw() { information.draw(); }
     };
 }

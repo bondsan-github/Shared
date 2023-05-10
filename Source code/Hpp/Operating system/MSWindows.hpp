@@ -65,7 +65,7 @@ class MSWindows : public Logging
 
         Size  desktop_size       {};
         uint  desktop_dpi        {};
-        Size  client_size        {};
+        Size  client_size_       {};
         uint  window_dpi         { 96 };
         Point position_top_left  { 100,100 };
         Point position_center    {};
@@ -89,7 +89,7 @@ class MSWindows : public Logging
 
         std::set<RECT> window_recangles {};
 
-        void get_window_rectangles()
+        void window_rectangles()
         {
             EnumWindows( MSWindows::enumerate_windows ,
                          reinterpret_cast< LPARAM >( this ) );
@@ -132,23 +132,14 @@ class MSWindows : public Logging
             
         void window_size_changed( uint width , uint height );
          
-        RECT get_client_position(); // Point position() const;
-        Size get_client_size();    //  Size  size() const;
+        RECT client_position(); // Point position() const;
+        Size client_size();    //  Size  size() const;
 
-        HWND get_window() const;
+        HWND window() const;
         
         int message_loop();
 
         //uint dpi();
 
-        /* void register_input_device( page_and_usage & device )
-        {
-            RAWINPUTDEVICE raw_device;
-            raw_device.usUsagePage = device.page;
-            raw_device.usUsage = device.usage;
-            raw_device.dwFlags = RIDEV_DEVNOTIFY; // | RIDEV_EXINPUTSINK | RIDEV_INPUTSINK // attached and detached
-            raw_device.hwndTarget = window_principle;
-
-            RegisterRawInputDevices( &device, 1, sizeof( RAWINPUTDEVICE ) );
-        }*/
+        void register_input_device( ushort page , ushort usage );
 };

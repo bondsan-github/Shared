@@ -1,30 +1,30 @@
-#include "..\headers\hid_raw_device.h"
+#include "..\headers\Raw_device.h"
 
 //#include <hidpi.h>
 //#include <hidsdi.h>
 
-namespace hid
+namespace HID
 {
-    //hid_raw_device::hid_raw_device() { //OutputDebugString( L"hid_raw_device::default constructor\n" ); }
+    //Raw_device::Raw_device() { //OutputDebugString( L"Raw_device::default constructor\n" ); }
    
    /*
-    hid_raw_device::hid_raw_device( const hid_raw_device & copy )
+    Raw_device::Raw_device( const Raw_device & copy )
     {
-        //OutputDebugString( L"hid_raw_device::copy constructor\n" );
+        //OutputDebugString( L"Raw_device::copy constructor\n" );
 
         if( this != &copy ) *this = copy;
     }
 
-    hid_raw_device::hid_raw_device( hid_raw_device && in_move ) noexcept
+    Raw_device::Raw_device( Raw_device && in_move ) noexcept
     {
-        //OutputDebugString( L"hid_raw_device::move constructor\n" );
+        //OutputDebugString( L"Raw_device::move constructor\n" );
 
         if( this != &in_move ) *this = std::move( in_move );
     }
     
-    hid_raw_device & hid_raw_device::operator = ( const hid_raw_device & assign_copy )
+    Raw_device & Raw_device::operator = ( const Raw_device & assign_copy )
     {
-        //OutputDebugString( L"hid_raw_device::assign copy\n" );
+        //OutputDebugString( L"Raw_device::assign copy\n" );
 
         if( this != &assign_copy )
         {
@@ -38,9 +38,9 @@ namespace hid
         return *this;
     }
 
-    hid_raw_device & hid_raw_device::operator = ( hid_raw_device && assign_move ) noexcept
+    Raw_device & Raw_device::operator = ( Raw_device && assign_move ) noexcept
     {
-        //OutputDebugString( L"hid_raw_device::assign move\n" );
+        //OutputDebugString( L"Raw_device::assign move\n" );
 
         if( this != &assign_move )
         {
@@ -57,9 +57,9 @@ namespace hid
     }
     */
 
-    hid_raw_device::hid_raw_device( const HANDLE &in_device ) 
+    Raw_device::Raw_device( HANDLE const & device )
     {
-        //OutputDebugString( L"hid_raw_device::parametertised constructor\n" );
+        //OutputDebugString( L"Raw_device::parametertised constructor\n" );
         //https://learn.microsoft.com/en-us/windows-hardware/drivers/hid/
 
         device_pointer = in_device;
@@ -83,13 +83,13 @@ namespace hid
         usage = capabilities.Usage;
     }
     
-    bool hid_raw_device::is_multi_touch()
+    bool Raw_device::is_multi_touch()
     { 
         return ( page == HID_USAGE_PAGE_DIGITIZER && usage == HID_USAGE_DIGITIZER_TOUCH_PAD );
     }
 
     /*
-    void hid_raw_device::reset()
+    void Raw_device::reset()
     {
         device_pointer = nullptr;
         data_preparsed.clear();
@@ -100,9 +100,9 @@ namespace hid
     */
 
     /*
-    hid_raw_device::~hid_raw_device() 
+    Raw_device::~Raw_device() 
     {
-        //OutputDebugString( L"hid_raw_device::de-constructor\n" );
+        //OutputDebugString( L"Raw_device::de-constructor\n" );
         //device_pointer = nullptr;
         //data_preparsed.clear();
     }

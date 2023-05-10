@@ -10,37 +10,28 @@
 
 namespace HID
 {
-    const enum class item_type { input , output , feature };
+    const enum class Report_type { input , output , feature };
 
     struct Identity
     {
         ulong vendor  {};
         ulong product {};
 
-        bool operator == ( const Identity & in_identity ) const
+        bool operator == ( const Identity & identity ) const
         {
-            bool same = false;
-             same = ( vendor == in_identity.vendor && product == in_identity.product );
-             return same;
+            return vendor == identity.vendor && product == identity.product;
         }
-    };
-
-    struct page_and_usage
-    {
-        unsigned short page  {};
-        unsigned short usage {};
     };
 
     struct Report
     {
-        ushort byte_amount            { 0 };
+        ushort byte_amount            {};
+        ushort button_amount          {};
+        ushort value_amount           {};
+        ushort data_identifier_amount {};
 
-        ushort button_amount          { 0 };
-        ushort value_amount           { 0 };
-        ushort data_identifier_amount { 0 };
-
-        //std::vector< hid_local_item >  buttons { 0 };
-        //std::vector< hid_global_item > values  { 0 };
+        //std::vector< hid_local_item >  buttons {};
+        //std::vector< hid_global_item > values  {};
 
         void reset()
         {
@@ -122,8 +113,11 @@ namespace HID
             void reset()
             {
                 NumGlobalUnknowns = 0;
+                
                 memset( Reserved , 0 , sizeof( uchar ) * 3 );
+
                 GlobalUnknowns    = nullptr;
+
                 memset( Data     , 0 , sizeof( ulong ) );
             }
     };

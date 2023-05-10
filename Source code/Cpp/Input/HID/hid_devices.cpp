@@ -15,7 +15,8 @@ namespace HID
         //std::wstring message {};
         
         int result = GetRawInputDeviceList( 0 , & device_amount , sizeof( RAWINPUTDEVICELIST ) );
-        if( result < 0 ) error_exit( L"\nget input device list error" );
+
+        if( result < 0 ) error_exit( L"Unable to get raw input device list." );
 
         raw_device_list.resize( device_amount );
 
@@ -25,9 +26,9 @@ namespace HID
         //message = L"\ndevices amount: " + std::to_wstring( device_amount ) + L"\n";
         //OutputDebugStringW( message.data() );
 
-        device_identity identity {};
-        uint device_index {0}; // 4 / 8 /11
-        uint device_multiple_touch_index { 0 };
+        Identity identity {};
+        uint     device_index {}; // 4 / 8 /11
+        uint     device_multiple_touch_index {};
         
         // find first precision touchpad
         for( ; device_index < raw_device_list.size() ; device_index++ )
@@ -43,7 +44,8 @@ namespace HID
                 //OutputDebugStringW( message.data() );
 
                 device_multiple_touch_index = device_index;
-                identity = new_device.get_identity();
+
+                identity = new_device.identity();
 
                 input_devices.push_back( new_device );
                 
