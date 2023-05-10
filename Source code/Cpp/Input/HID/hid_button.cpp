@@ -1,13 +1,12 @@
-#include "Source code/Hpp/Input/HID/Button.hpp"
+#include "Source code/Hpp/Input/HID/HID_Button.hpp"
+
+#include "Source code/Hpp/Input/HID/HID_Usages.hpp"
 
 #include <bitset>
 
-#include "Source code/Hpp/Input/HID/Usages.hpp"
-
-
-namespace hid
+namespace HID
 {
-    Button::Button( Device * in_device , const _HIDP_BUTTON_CAPS & construct_button )
+    Button::Button( Device * in_device , _HIDP_BUTTON_CAPS const & construct_button )
     {
         if( this not_eq &construct_button ) // prevents self assignment a = a;
         {

@@ -27,7 +27,7 @@ namespace HID
     {
         private:
 
-            Identity     identity {};
+            Identity     identity_   {};
             HANDLE       raw_handle  { nullptr };
             HANDLE       file_handle { nullptr };
             std::wstring path        { L"no device path" }; // or std::filesystem::wpath
@@ -105,10 +105,10 @@ namespace HID
 
             bool            is_multi_touch();
             std::wstring    path();
-            device_identity identity() const { return identity; }
+            Identity        identity() const { return identity_; }
             HANDLE          handle() const { return raw_handle; }
             page_and_usage  page_and_usage() { return { page , usage }; }
-            bool            is_same_device( const device_identity in_identity ) const { return identity == in_identity; }
+            bool            is_same_device( Identity in_identity ) const { return identity_ == in_identity; }
             unsigned char * data() { return data_preparsed.data(); }
             uint            input_report_size() { return capabilities.InputReportByteLength; }
             

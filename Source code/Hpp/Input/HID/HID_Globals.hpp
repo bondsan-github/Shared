@@ -31,7 +31,7 @@ namespace HID
         unsigned short usage {};
     };
 
-    struct report
+    struct Report
     {
         ushort byte_amount            { 0 };
 
@@ -53,7 +53,7 @@ namespace HID
         }
     };
 
-    const struct requests
+    const struct Requests
     {
         uint data = ( 1 << 29 ) | 0x5; // 0x20'000'005
         uint path = ( 1 << 29 ) | 0x7; // return value in character amount, not byte size
@@ -63,11 +63,11 @@ namespace HID
 
     // was for reseting to known state after moving 
 
-    class hid_capabilities : public _HIDP_CAPS
+    class Capabilities : public _HIDP_CAPS
     {
         public:
     
-        hid_capabilities() { reset(); }
+        Capabilities() { reset(); }
 
         //hid_capabilities( HIDP_CAPS & in_caps ) { }
         
@@ -98,11 +98,11 @@ namespace HID
         }
     };
 
-    class hid_attributes : public _HIDD_ATTRIBUTES
+    class Attributes : public _HIDD_ATTRIBUTES
     {
         public:
 
-            hid_attributes() { reset(); }
+            Attributes() { reset(); }
 
             void reset()
             {
@@ -113,11 +113,11 @@ namespace HID
             }
     };
 
-    class hid_attributes_extended : public _HIDP_EXTENDED_ATTRIBUTES
+    class Attributes_extended : public _HIDP_EXTENDED_ATTRIBUTES
     {
         public:
 
-            hid_attributes_extended() { reset(); }
+            Attributes_extended() { reset(); }
 
             void reset()
             {

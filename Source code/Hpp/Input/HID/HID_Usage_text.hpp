@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-namespace hid
+namespace HID
 {
     using usage_text = std::vector< std::vector< std::wstring > >;
     

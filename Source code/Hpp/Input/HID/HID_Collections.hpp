@@ -1,41 +1,42 @@
 #pragma once
 
-#include "..\headers\custom_types.h"
-#include "..\headers\hid_globals.h"
+#include "Source code/Hpp/Custom types.hpp"
 
-#include "..\headers\hid_collection.h"
+#include "Source code/Hpp/Input/HID/HID_Globals.hpp"
+#include "Source code/Hpp/Input/HID/HID_Collection.hpp"
 
 #include <vector>
 #include <hidpi.h>
 
-namespace hid {
+namespace HID
+{
 
-    class hid_device;
+    class Device;
 
-    class hid_collections
+    class Collections
     {
         private:
 
             // collection of same device items 
-            std::vector<hid_collection> collections;
+            std::vector< Collection > collections;
 
             //float collection_text_spacer { 120.0f };
 
         public:
 
-            void add_collections( _HIDP_LINK_COLLECTION_NODE * in_nodes , uint in_size );
-            void set_collections_positions( const hid_device & in_device );
+            void add( _HIDP_LINK_COLLECTION_NODE * in_nodes , uint in_size );
+            void set_positions( Device const & in_device );
 
-            void add_buttons( hid_device * in_device , item_type in_type , _HIDP_BUTTON_CAPS * in_buttons , uint in_size );
-            void add_values( hid_device * in_device , item_type in_type , _HIDP_VALUE_CAPS * in_value , uint in_size );
+            void add_buttons( Device * in_device , item_type in_type , _HIDP_BUTTON_CAPS * in_buttons , uint in_size );
+            void add_values( Device * in_device , item_type in_type , _HIDP_VALUE_CAPS * in_value , uint in_size );
 
-            uint get_contact_amount_maximum();
+            uint contact_amount_maximum();
             //uint get_contact_identifier();
             //uint get_x();
             //uint get_y();
-            range get_resolution();
+            Range resolution();
 
-            void update_input( RAWINPUT * in_raw_data )
+            void update( RAWINPUT * in_raw_data )
             //void update( RAWHID in_raw_data )
             {
                 for( auto & collection : collections ) collection.update_input( in_raw_data );

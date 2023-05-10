@@ -11,8 +11,6 @@ using uint   = unsigned int;   // 32 bits
 using ulong  = unsigned long;  // long same as int
 //using string = std::wstring;
 
-//using vertex = vertex_rgba_uv;
-
 template< typename Type >
 static void set_name( Type com , wchar_t const * name )
 {
@@ -28,19 +26,12 @@ struct Range
     //range( const long & in_minimum , const long & in_maximum ) : minimum( in_minimum ) , maximum( in_maximum ) {}
 };
 
-//template< typename type >
-// == for floats -> within range
-//using size_f = Size<float>;
-
 inline bool operator < ( RECT const & lhs , RECT const & rhs)
 {
     return ( lhs.right - lhs.left ) * ( lhs.bottom - lhs.top ) < 
            ( rhs.right - rhs.left ) * ( rhs.bottom - rhs.top );
         
 }
-
-//using      result                  = HRESULT;
-//enum class factory_type            { force_dword = -1 , single_thread , multiple_threads };
 
 //https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
 // WinUser.h
@@ -90,15 +81,6 @@ const std::map< std::wstring , unsigned int > inputs_english
 };
 
 /*
-D2D_POINT_2F operator + ( const D2D_POINT_2F & in_point_left , const D2D_POINT_2F & in_point_right )
-{
-    return { in_point_left.x + in_point_right.x , in_point_left.y + in_point_right.y };
-}*/
-
-//using      paint_structure         = PAINTSTRUCT;
-//using size = D2D1_SIZE_F;
-//using      colours                 = D2D1::ColorF;
-/*
 class colours : public D2D1::ColorF //_D3DCOLORVALUE
 {
 public:
@@ -110,65 +92,3 @@ public:
     }
 };
 */
-
-//enum class alpha_mode { force_dword = -1 , unknown , pre_multiplied , straight , ignore };
-//enum class style { solid , dots , dashes ,
-    
-//using      write_factory           = IDWriteFactory;
-//enum class write_factory_type      { shared , isolated };
-//using      renderer_parameters     = IDWriteRenderingParams;
-
-//using      font_collection         = IDWriteFontCollection;
-//using      font_collection_pointer = ComPtr< font_collection >;
-//using      font_family             = IDWriteFontFamily;
-//using      font_collection_names   = IDWriteLocalizedStrings;
-//using      font_weight             = DWRITE_FONT_WEIGHT;
-//using      font_style              = DWRITE_FONT_STYLE;
-//using      font_stretch            = DWRITE_FONT_STRETCH;
-
-//using      text_format             = IDWriteTextFormat;
-//using      text_format_pointer     = ComPtr< text_format >;
-//using      text_layout             = IDWriteTextLayout;
-//using      text_layout_pointer     = ComPtr< text_layout >;
-//enum class font_style              { normal          , oblique       , italic         };
-//enum class font_weight             { light     = 300 , regular = 400 , bold     = 700 };
-//enum class font_stretch            { condensed = 3   , normal  = 5   , expanded = 7   };
-/*
-enum class font_options            { force_dword    = -1 , 
-                                        none           =  0 ,
-                                        no_snap        =  1 ,
-                                        clip           =  2 ,
-                                        colour_font    =  4 ,
-                                        no_snap_bitmap =  8 };
-                                        */
-//using      text_metrics            = DWRITE_TEXT_METRICS;
-//using      text_analyser           = IDWriteTextAnalyzer;
-
-//using      rectangle               = D2D_RECT_F;
-//using      rounded_rectangle       = D2D1_ROUNDED_RECT;
-//using      dimensions              = D2D_SIZE_F;
-
-/*
-struct rectangle_edge_middles
-{
-    vertex top    {};
-    vertex right  {};
-    vertex bottom {};
-    vertex left   {};
-};
-
-struct planes
-{
-    float horizontal{};
-    float vertical{};
-};
-*/
-
-
-//const vector< wstring > raw_device_type_text{ L"mouse" , L"keyboard" , L"human interface device" , L"unknown type" };
-/*  template< typename page_type = page_for_window >
-class page
-{
-    private:
-        ComPtr< page_type >      page_ptr{};
-};   */

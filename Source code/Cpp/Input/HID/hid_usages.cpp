@@ -1,26 +1,23 @@
-#include "..\headers\hid_usages.h"
+#include "Source code/Hpp/Input/HID/HID_Usages.hpp"
 
-#include "..\headers\locate.h"
-#include "..\headers\hid_usage_text.h"
+#include "Source code/Hpp/Input/HID/HID_Usage_text.hpp"
 
 #include <stdexcept>
 #include <format>
 
-namespace hid
+namespace HID
 {
-    hid_usages::hid_usages()
+    Usages::Usages()
     {
-        //OutputDebugString( L"hid_usages::default constructor\n" );
-        
-        locate::set_usages( this );
+        //OutputDebugString( L"Usages::default constructor\n" );
     }
 
-    hid_usages::~hid_usages()
+    Usages::~Usages()
     {
-        //OutputDebugString( L"hid_usages::de-constructor\n" );
+        //OutputDebugString( L"Usages::de-constructor\n" );
     };
 
-    std::wstring hid_usages::page( const uint &in_page )
+    std::wstring Usages::page( uint in_page )
     {
         try
         {
@@ -32,7 +29,7 @@ namespace hid
         }
     };
 
-    std::wstring hid_usages::usage( const uint &in_page , const uint &in_usage )
+    std::wstring Usages::usage( uint in_page , uint in_usage )
     {
         try
         {
@@ -44,12 +41,12 @@ namespace hid
         }
     }
 
-    std::wstring hid_usages::collection_type( const uint &in_type )
+    std::wstring Usages::type( uint in_type )
     {
         // remove try catch
         try
         {
-            return collection_type_text.at( in_type );
+            return type_texts.at( in_type );
         }
         catch( std::out_of_range & exception )
         {
@@ -58,7 +55,7 @@ namespace hid
     }
 
     /*
-    std::wstring hid_usages::type( uint in_page , int in_usage )
+    std::wstring Usages::type( uint in_page , int in_usage )
     {
         try
         {

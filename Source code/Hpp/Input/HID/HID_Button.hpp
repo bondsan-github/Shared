@@ -1,11 +1,11 @@
 #pragma once
 
-#include <hidpi.h>
-
 #include "Source code/Hpp/Custom types.hpp"
 #include "Source code/Hpp/Graphics/DWrite/Text.hpp"
 
-namespace hid
+#include <hidpi.h>
+
+namespace HID
 {
     class Device;
 
@@ -26,16 +26,16 @@ namespace hid
             Button( Device * in_device, _HIDP_BUTTON_CAPS const & in_button_capabilities );
             
             void text();
-            void append_text( std::wstring in_text ) { information.add_content(in_text); }
-            void position(const Point & in_position ) { information.set_position_top_left(in_position); }
-            void layout_size( const D2D1_SIZE_F & in_size ) { information.set_layout_size( in_size ); }
+            void append_text( std::wstring in_text ) { information.add(in_text); }
+            void position(const Point & in_position ) { information.position(in_position); }
+            void layout_size( const D2D1_SIZE_F & in_size ) { information.layout_size( in_size ); }
 
-            Point position() const { return information.get_position_top_left(); }
+            Point position() const { return information.position(); }
 
-            float top() const { return information.get_top(); }
-            float right() const { return information.get_right(); }
-            float width() const { return information.get_formated_width();  }
-            float height() const { return information.get_formated_height(); }
+            float top() const { return information.top(); }
+            float right() const { return information.right(); }
+            float width() const { return information.width();  }
+            float height() const { return information.height(); }
             
             void update( RAWINPUT * in_raw_data );
             void update_information();

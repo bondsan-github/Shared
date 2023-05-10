@@ -5,29 +5,26 @@
 
 #include "Source code/Hpp/Output/Logging.hpp"
 
-namespace hid
+class Write_factory
 {
-    class Write_factory
-    {
-        protected:
+    protected:
 
-            Microsoft::WRL::ComPtr<IDWriteFactory> factory_write {};
+        Microsoft::WRL::ComPtr<IDWriteFactory> factory_write {};
 
-        public:
+    public:
 
-            Write_factory()
+        Write_factory()
+        {
+            if( not factory_write )
             {
-                if( not factory_write )
-                {
-                    DWriteCreateFactory( DWRITE_FACTORY_TYPE_SHARED ,
-                                         __uuidof( IDWriteFactory ) ,
-                                         &factory_write ) >> result_check;
-                }
+                DWriteCreateFactory( DWRITE_FACTORY_TYPE_SHARED ,
+                                        __uuidof( IDWriteFactory ) ,
+                                        &factory_write ) >> result_check;
             }
+        }
 
-            ~Write_factory()
-            {
-                if( factory_write ) { factory_write->Release(); }
-            }
-    };
-}
+        ~Write_factory()
+        {
+            if( factory_write ) { factory_write->Release(); }
+        }
+};

@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace hid
+namespace HID
 {
     class Usages
     {
@@ -15,10 +15,10 @@ namespace hid
             ~Usages();
             // copy and move 
 
-            std::wstring page( const uint &in_page ); // const
-            std::wstring usage( const uint &in_page , const uint &in_usage );
-            std::wstring collection_type( const uint &in_type );
-            //std::wstring type  ( uint in_page , int in_usage );
+            std::wstring page( uint in_page );
+            std::wstring usage(uint in_page , uint in_usage );
+            std::wstring type( uint in_type );
+            //std::wstring type( uint in_page , int in_usage );
 
         private:
 
@@ -47,7 +47,7 @@ namespace hid
             };
 
             // hid 6.2.2.6
-            const enum class collection_type : unsigned int // char
+            const enum class types : uint // char
             {
                 physical ,                   // 0x00
                 application ,                // 0x01
@@ -67,7 +67,7 @@ namespace hid
             //using _type = collection_type;
             //using _text = std::wstring;
             //std::pair< _type , _text >;
-            const std::vector< std::wstring > collection_type_text
+            const std::vector< std::wstring > type_texts
             {
                 L"physical" ,             // 0x00
                 L"application" ,          // 0x01
@@ -85,7 +85,7 @@ namespace hid
             };
 
             // hid 3.4.1
-            const enum class modifier_type
+            const enum class modifiers
             {
                 undefined ,
                 reserved ,
