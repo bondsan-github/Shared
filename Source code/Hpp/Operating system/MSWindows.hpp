@@ -5,7 +5,7 @@
 
 // DirectX apps don't need GDI
 #define NODRAWTEXT
-//#define NOGDI
+#define NOGDI
 #define NOBITMAP
 
 // Include <winsvc.h> if you need this
@@ -18,8 +18,10 @@
 
 #include <windows.h>
 
-#include "Custom types.hpp"
-#include "Logging.hpp"
+#include "Source code/Hpp/Custom types.hpp"
+#include "Source code/Hpp/Graphics/Size.hpp"
+#include "Source code/Hpp/Graphics/Point.hpp"
+#include "Source code/Hpp/Output/Logging.hpp"
 
 #include <set>
 
@@ -49,8 +51,10 @@ class MSWindows : public Logging
         
         //bool       transparent { true };
         bool       transparent { false };
-
         DWORD      style_extra_transparent { WS_EX_NOREDIRECTIONBITMAP };
+
+        bool fullscreen { false };
+        //bool fullscreen { true };
 
         //WS_EX_LAYOUTRTL
         /*If( shell language ) == Hebrew, Arabic, or language supports reading order alignment

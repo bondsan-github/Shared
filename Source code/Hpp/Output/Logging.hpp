@@ -5,7 +5,7 @@
 
 struct Token 
 {
-    Token(std::wstring in_message = {}) : message{in_message} {}
+    Token( std::wstring in_message = {} ) : message{ in_message } {}
 
     std::wstring message {};
 };
@@ -25,7 +25,7 @@ class Logging
         void print_debug( const wchar_t * message );
         void print_debug( const char * message );
 
-        friend void operator>>( Logging , Token );
+        friend void operator >> ( Logging , Token );
 
     private:
     //protected:
@@ -37,7 +37,7 @@ class Logging
         std::wstring retreive_system_message( HRESULT result );
 };
 
-void operator>>( Logging , Token );
+void operator >> ( Logging , Token );
 
 //static Logging result_check;
 //extern Logging result_check;

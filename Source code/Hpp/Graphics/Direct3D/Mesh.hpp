@@ -9,10 +9,9 @@
 #include <d3d11.h>
 #include <DirectXMath.h>
 
-#include "Input layouts.hpp"
-#include "DirectXMath extension.hpp"
-#include "Loging.hpp"
-#include "Custom types.hpp"
+#include "Source code/Hpp/Custom types.hpp"
+#include "Source code/Hpp/Graphics/Direct3D/Input layouts.hpp"
+#include "Source code/Hpp/Graphics/DirectXMath extension.hpp"
 
 using Microsoft::WRL::ComPtr;
 using std::vector;

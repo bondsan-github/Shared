@@ -1,6 +1,6 @@
-#include "Logging.hpp"
+#include "Source code/Hpp/Output/Logging.hpp"
 
-#include "Custom types.hpp"
+#include "Source code/Hpp/Custom types.hpp"
 
 #include <strsafe.h>
 #include <iostream>

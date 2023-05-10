@@ -1,7 +1,7 @@
-#include "Application.hpp"
+#include "Source code/Hpp/Application.hpp"
 
 Application::Application( )
-: MSWindows( this ) , Graphics2d( *this )
+: MSWindows( this ) , Graphics( *this )
 {}
 
 void Application::initialise( Size in_client_size )
@@ -9,7 +9,7 @@ void Application::initialise( Size in_client_size )
     HWND window = MSWindows::initialise( in_client_size );
 
     {
-        Graphics2d::initialise( window );
+        Graphics::initialise( window );
     }
 
     Timer::initialise();

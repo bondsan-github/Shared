@@ -1,5 +1,5 @@
 
-#include "Graphics/Sprite.hpp"
+#include "Source code/Hpp/Graphics/Direct2D/Sprite.hpp"
 
 void Sprite::update( )
 {

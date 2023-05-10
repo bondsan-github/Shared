@@ -1,7 +1,8 @@
-#include "Operating system\MSWindows.hpp"
+#include "Source code/Hpp/Operating system/MSWindows.hpp"
 
-#include "Operating system\MSWindows messages.hpp"
-#include "Application2d.hpp"
+//#include "Source code/Hpp/MSWindows messages.hpp"
+#include "Source code/Hpp/Application.hpp"
+#include "Source code/Hpp/Output/Logging.hpp"
 
 //#include <winuser.h>
 //#include <wingdi.h>
@@ -12,10 +13,10 @@ MSWindows::MSWindows( Application * application )
 : application { application }
 {}
 
-//void MSWindows::initialise( Application * application )
 HWND MSWindows::initialise( Size in_client_size )
 {
-    client_size = in_client_size;
+    if( client_size ) client_size = in_client_size;
+    else fullscreen = true;
 
     instance = GetModuleHandleW( 0 );
 
@@ -46,18 +47,24 @@ HWND MSWindows::initialise( Size in_client_size )
     if( not atom ) error_exit( L"Unable to register class ex." );
     
     RECT desktop {};
-    RECT size    {};
 
     GetWindowRect( GetDesktopWindow() , & desktop );
-    int screen_width = GetSystemMetrics( SM_CXSCREEN );
+
+    //int screen_width = GetSystemMetrics( SM_CXSCREEN );
+    //int screen_height = GetSystemMetrics( SM_CYSCREEN );
     
     int result = GetDpiForWindow( GetDesktopWindow() );
 
-    uint half_width = client_size.width() / 2;
-    uint half_height = client_size.height() / 2;
-
-    position_top_left.x( ( desktop.right / 2 ) - half_width );
-    position_top_left.y( ( desktop.bottom / 2 ) - half_height );
+    if( fullscreen )
+    {
+        client_size.width( desktop.right - desktop.left );
+        client_size.height( desktop.bottom - desktop.top );
+    }
+    else
+    {
+        position_top_left.x( ( desktop.right - client_size.width() ) / 2 );
+        position_top_left.y( ( desktop.bottom - client_size.height() ) / 2 );
+    }
     
     /*
     const enum class dpi_aware : int { invalid = -1 , unaware , system , per_monitor }; // (UINT) -1
@@ -73,7 +80,7 @@ HWND MSWindows::initialise( Size in_client_size )
     adjusted_window_size.right  = static_cast< long >( client_size.width() );
     adjusted_window_size.bottom = static_cast< long >( client_size.height() );
 
-    bool adjusted = AdjustWindowRect( & adjusted_window_size , WS_OVERLAPPEDWINDOW , FALSE );
+    //bool adjusted = AdjustWindowRect( & adjusted_window_size , WS_OVERLAPPEDWINDOW , FALSE );
         
     window_principle = CreateWindowExW( transparent ? style_extra_transparent : style_extra ,
                                         class_name ,
@@ -81,8 +88,8 @@ HWND MSWindows::initialise( Size in_client_size )
                                         transparent ? window_style_transparent : window_style ,
                                         position_top_left.x() ,
                                         position_top_left.y() ,
-                                        adjusted_window_size.right - adjusted_window_size.left,
-                                        adjusted_window_size.bottom - adjusted_window_size.top,
+                                        client_size.width() ,
+                                        client_size.height() ,
                                         nullptr, //HWND_DESKTOP ,
                                         menu ,
                                         instance ,

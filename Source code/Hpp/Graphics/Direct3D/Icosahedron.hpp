@@ -1,8 +1,7 @@
 #pragma once
 
-#include "Custom types.hpp"
-#include "Loging.hpp"
-#include "Mesh.hpp"
+#include "Source code/Hpp/Custom types.hpp"
+#include "Source code/Hpp/Graphics/Direct3D/Mesh.hpp"
 
 #include <math.h>
 #include <algorithm>

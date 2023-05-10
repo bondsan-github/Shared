@@ -1,46 +1,48 @@
 #pragma once
 
-#include "..\headers\custom_types.h"
-#include "..\headers\text_d2d.h"
-#include "..\headers\vertex.h"
-
 #include <hidpi.h>
+
+#include "Source code/Hpp/Custom types.hpp"
+#include "Source code/Hpp/Graphics/DWrite/Text.hpp"
 
 namespace hid
 {
-    class hid_device;
+    class Device;
 
-    class hid_button : public _HIDP_BUTTON_CAPS
+    class Button : public _HIDP_BUTTON_CAPS
     {
         private:
 
             bool on { false };
-            text_d2d information;
+
+            Text         information;
             std::wstring content{};
-            hid_device * device { nullptr };
+            Device *     device {}; // TODO: change to shared/unique_ptr<>
+
             //_HIDP_BUTTON_CAPS capabilities {};
 
         public:
 
-            hid_button( hid_device * in_device, const _HIDP_BUTTON_CAPS & in_button_capabilities );
+            Button( Device * in_device, _HIDP_BUTTON_CAPS const & in_button_capabilities );
             
-            void set_information_text();
-            void append_information_text( std::wstring in_text ) { information.add_content(in_text); }
-            void set_text_position(const vertex & in_position ) { information.set_position_top_left(in_position); }
-            void set_layout_size( const D2D1_SIZE_F & in_size ) { information.set_layout_size( in_size ); }
+            void text();
+            void append_text( std::wstring in_text ) { information.add_content(in_text); }
+            void position(const Point & in_position ) { information.set_position_top_left(in_position); }
+            void layout_size( const D2D1_SIZE_F & in_size ) { information.set_layout_size( in_size ); }
 
-            vertex get_text_position() const { return information.get_position_top_left(); }
-            float get_text_top() const { return information.get_top(); }
-            float get_text_right() const { return information.get_right(); }
-            float get_text_width() const { return information.get_formated_width();  }
-            float get_text_height() const { return information.get_formated_height(); }
+            Point position() const { return information.get_position_top_left(); }
+
+            float top() const { return information.get_top(); }
+            float right() const { return information.get_right(); }
+            float width() const { return information.get_formated_width();  }
+            float height() const { return information.get_formated_height(); }
             
             void update( RAWINPUT * in_raw_data );
-            void update_information_text();
+            void update_information();
 
             //void update( RAWHID in_raw_data );
 
-            void draw() const { information.draw(); }
+            void draw() { information.draw(); }
 
             /*
             ushort get_bit_field()               const { return BitField;       }

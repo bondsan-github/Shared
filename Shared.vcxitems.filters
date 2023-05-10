@@ -111,18 +111,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Sprite.hpp">
       <Filter>Source code\Hpp\Graphics\Direct2D</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Icosahedron.hpp">
-      <Filter>Source code\Hpp\Graphics\Direct3D</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Mesh.hpp">
-      <Filter>Source code\Hpp\Graphics\Direct3D</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Quad.hpp">
-      <Filter>Source code\Hpp\Graphics\Direct3D</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Texture.hpp">
-      <Filter>Source code\Hpp\Graphics\Direct3D</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Patterns\Observer.hpp">
       <Filter>Source code\Hpp\Patterns</Filter>
     </ClInclude>
@@ -132,53 +120,38 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Patterns\Observable.hpp">
       <Filter>Source code\Hpp\Patterns</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Ouput\Logging.hpp">
-      <Filter>Source code\Hpp\Output</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_item.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\HID_Item.hpp">
       <Filter>Source code\Hpp\Input\HID</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_multiple_touch.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\HID_Usage_text.hpp">
       <Filter>Source code\Hpp\Input\HID</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_usage_text.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\HID_Usages.hpp">
       <Filter>Source code\Hpp\Input\HID</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_usages.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\HID_Value.hpp">
       <Filter>Source code\Hpp\Input\HID</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_value.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\HIDP_Status.hpp">
       <Filter>Source code\Hpp\Input\HID</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hidp_status.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\HID_Button.hpp">
       <Filter>Source code\Hpp\Input\HID</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_button.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\HID_Collection.hpp">
       <Filter>Source code\Hpp\Input\HID</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_collection.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\HID_Collections.hpp">
       <Filter>Source code\Hpp\Input\HID</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_collections.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\HID_Device.hpp">
       <Filter>Source code\Hpp\Input\HID</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_device.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\HID_Devices.hpp">
       <Filter>Source code\Hpp\Input\HID</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_devices.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\HID_Globals.hpp">
       <Filter>Source code\Hpp\Input\HID</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\hid_globals.h">
-      <Filter>Source code\Hpp\Input\HID</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Direct2D.hpp">
-      <Filter>Source code\Hpp\Graphics\Direct2D</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Direct3D.hpp">
-      <Filter>Source code\Hpp\Graphics\Direct3D</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct3D\Camera.hpp">
-      <Filter>Source code\Hpp\Graphics\Direct3D</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\DWrite\Text.hpp">
       <Filter>Source code\Hpp\Graphics\DWrite</Filter>
@@ -189,6 +162,36 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Image.hpp">
       <Filter>Source code\Hpp\Graphics\Direct2D</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Input\HID\Multiple touch.hpp">
+      <Filter>Source code\Hpp\Input\HID</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Application.hpp">
+      <Filter>Source code\Hpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Output\Logging.hpp">
+      <Filter>Source code\Hpp\Output</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Rectangle2D.hpp">
+      <Filter>Source code\Hpp\Graphics\Direct2D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Drawable2D.hpp">
+      <Filter>Source code\Hpp\Graphics\Direct2D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Factory2D.hpp">
+      <Filter>Source code\Hpp\Graphics\Direct2D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Graphics2D.hpp">
+      <Filter>Source code\Hpp\Graphics\Direct2D</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Rectangle.hpp">
+      <Filter>Source code\Hpp\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Point.hpp">
+      <Filter>Source code\Hpp\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Size.hpp">
+      <Filter>Source code\Hpp\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct2D\Image.cpp">
@@ -197,53 +200,32 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct2D\Sprite.cpp">
       <Filter>Source code\Cpp\Graphics\Direct2D</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_button.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\HID_Button.cpp">
       <Filter>Source code\Cpp\Input\HID</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_collection.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\HID_Collection.cpp">
       <Filter>Source code\Cpp\Input\HID</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_collections.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\HID_Collections.cpp">
       <Filter>Source code\Cpp\Input\HID</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_device.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\HID_Device.cpp">
       <Filter>Source code\Cpp\Input\HID</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_devices.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\HID_Devices.cpp">
       <Filter>Source code\Cpp\Input\HID</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_multiple_touch.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\Multiple touch.cpp">
       <Filter>Source code\Cpp\Input\HID</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_raw_device.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\HID_Raw_device.cpp">
       <Filter>Source code\Cpp\Input\HID</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_usages.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\HID_Usages.cpp">
       <Filter>Source code\Cpp\Input\HID</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\hid_value.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Input\HID\HID_Value.cpp">
       <Filter>Source code\Cpp\Input\HID</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Direct3D.cpp">
-      <Filter>Source code\Cpp\Graphics\Direct3D</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct2D\Direct2D.cpp">
-      <Filter>Source code\Cpp\Graphics\Direct2D</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Mesh.cpp">
-      <Filter>Source code\Cpp\Graphics\Direct3D</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Quad.cpp">
-      <Filter>Source code\Cpp\Graphics\Direct3D</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Texture.cpp">
-      <Filter>Source code\Cpp\Graphics\Direct3D</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Camera.cpp">
-      <Filter>Source code\Cpp\Graphics\Direct3D</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Icosahedron.cpp">
-      <Filter>Source code\Cpp\Graphics\Direct3D</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\WIC\WIC.cpp">
       <Filter>Source code\Cpp\Graphics\WIC</Filter>
@@ -257,8 +239,32 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Operating System\MSWindows.cpp">
       <Filter>Source code\Cpp\Operating system</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Ouput\Logging.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Application.cpp">
+      <Filter>Source code\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Output\Logging.cpp">
       <Filter>Source code\Cpp\Output</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct2D\Rectangle2D.cpp">
+      <Filter>Source code\Cpp\Graphics\Direct2D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct2D\Graphics2D.cpp">
+      <Filter>Source code\Cpp\Graphics\Direct2D</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Rectangle.cpp">
+      <Filter>Source code\Cpp\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Source.cpp">
+      <Filter>Source code\Cpp\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Direct3D\Point.cpp">
+      <Filter>Source code\Cpp\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\Size.cpp">
+      <Filter>Source code\Cpp\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source code\Cpp\Graphics\DWrite\Text.cpp">
+      <Filter>Source code\Cpp\Graphics\DWrite</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -28,72 +28,9 @@ struct Range
     //range( const long & in_minimum , const long & in_maximum ) : minimum( in_minimum ) , maximum( in_maximum ) {}
 };
 
-class Size
-{
-    private:
-
-        int width_  { };
-        int height_ { };
-
-    public:
-
-        Size() 
-        {};
-
-        Size( int width , int height ) : width_( width ) , height_( height ) 
-        {}
-
-        bool operator == ( Size & size )
-        {
-            return size.width_ == width_ and size.height_ == height_;
-        }
-
-        bool operator != ( Size & size )
-        {
-            return size.width_ != width_ or size.height_ != height_;
-        }
-
-        operator D2D1_SIZE_U ()
-        {
-            return { static_cast< uint >( width_ ) , static_cast< uint >( height_ ) };
-        }
-
-        void width( int width ) { width_ = width; }
-        void height( int height ) { height_ = height; }
-
-        int  width() const { return width_; }
-        int  height() const { return height_; }
-};
-
 //template< typename type >
 // == for floats -> within range
 //using size_f = Size<float>;
-
-class Point
-{
-    private:
-    
-        int x_ { };
-        int y_ { };
-
-    public:
-
-        Point() {};
-        explicit Point( int x , int y ) : x_( x ) , y_( y ) { }
-        
-        void x( int x ) { x_ = x; }
-        void y( int y ) { y_ = y; }
-        int  x() const { return x_; }
-        int  y() const { return y_; }
-
-        D2D1_RECT_F operator + ( D2D1_RECT_F & in_rect )
-        {
-            return { static_cast<float>( x_ )  ,
-                     static_cast< float >( y_ ) ,
-                     static_cast< float >( x_ ) + in_rect.right ,
-                     static_cast< float >( y_ ) + in_rect.bottom };
-        }
-};
 
 inline bool operator < ( RECT const & lhs , RECT const & rhs)
 {

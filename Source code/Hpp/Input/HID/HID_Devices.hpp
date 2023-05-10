@@ -1,29 +1,28 @@
 #pragma once
 
-#include "..\headers\hid_device.h"
-
-#include "..\headers\hid_globals.h"
-#include "..\headers\write_d2d.h"
+#include "Source code/Hpp/Input/HID/HID_Device.hpp"
+#include "Source code/Hpp/Input/HID/HID_Globals.hpp"
+#include "Source code/Hpp/Graphics/DWrite/Text.hpp"
 
 //#include <windows.h> // RAWINPUTDEVICELIST
 #include <vector>
 
-namespace hid
+namespace HID
 {
-    class hid_devices // public write
+    class Devices // public write
     {
         private:
             
             std::vector< RAWINPUTDEVICELIST > raw_device_list {};
-            std::vector< hid_device >         input_devices   {};
+            std::vector< Device >         input_devices   {};
 
-            text_d2d information {};
+            Text information {};
 
         public:
 
             void initialise();
             
-            hid_device * get_device( HANDLE in_handle );
+            Device * get_device( HANDLE in_handle );
             //add_contact( device, identifier );
             //update_contact_x( device, identifier, x);
             //update_contact_x( device, identifier, y);

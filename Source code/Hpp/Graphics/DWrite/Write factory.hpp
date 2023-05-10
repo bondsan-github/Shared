@@ -3,11 +3,11 @@
 #include <wrl/client.h>
 #include <dwrite.h>
 
-#include "Logging.hpp"
+#include "Source code/Hpp/Output/Logging.hpp"
 
 namespace hid
 {
-    class write_factory
+    class Write_factory
     {
         protected:
 
@@ -15,14 +15,17 @@ namespace hid
 
         public:
 
-            write_factory()
+            Write_factory()
             {
-                DWriteCreateFactory( DWRITE_FACTORY_TYPE_SHARED ,
-                                     __uuidof( IDWriteFactory ) ,
-                                     & factory_write ) >> result_check;
+                if( not factory_write )
+                {
+                    DWriteCreateFactory( DWRITE_FACTORY_TYPE_SHARED ,
+                                         __uuidof( IDWriteFactory ) ,
+                                         &factory_write ) >> result_check;
+                }
             }
 
-            ~write_factory()
+            ~Write_factory()
             {
                 if( factory_write ) { factory_write->Release(); }
             }

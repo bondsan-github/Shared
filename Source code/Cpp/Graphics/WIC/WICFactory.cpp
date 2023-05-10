@@ -1,4 +1,6 @@
-#include "Graphics/WICFactory.hpp"
+#include "Source code/Hpp/Graphics/WIC/WICFactory.hpp"
+
+#include "Source code/Hpp/Output/Logging.hpp"
 
 WICFactory::WICFactory()
 {

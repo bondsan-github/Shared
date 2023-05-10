@@ -1,7 +1,7 @@
 #pragma once
 
-#include "..\headers\custom_types.h"
-#include "..\headers\vertex.h"
+#include "Source code/Hpp/Custom types.hpp"
+#include "Source code/Hpp/Graphics/Vertex.hpp"
 
 #include <d2d1.h>
 #include <dwrite.h>
@@ -12,11 +12,14 @@ using std::wstring;
 #include <wrl/client.h>
 using Microsoft::WRL::ComPtr;
 
-#include "write_factory.h"
+#include "Source code/Hpp/Custom types.hpp"
+#include "Source code/Hpp/Graphics/DWrite/Write factory.hpp"
+#include "Source code/Hpp/Graphics/Direct2D/Drawable2D.hpp"
+#include "Source code/Hpp/Graphics/Direct2D/Rectangle2D.hpp"
 
 namespace hid
 {
-    class text_d2d : public write_factory
+    class Text : public Write_factory , public Drawable2D
     {
         private:
        
@@ -25,10 +28,10 @@ namespace hid
             ComPtr< IDWriteTextLayout >    layout     {};
             //ComPtr <IDWriteFontCollection> collection {};
 
-            wstring               content {};
+            wstring               content_ {};
             
           //vertex                position_center   { 10.0f , 10.0f        }; // dips
-            vertex                position_top_left { 0.0f , 0.0f          }; // in dips
+            Point                 position_         { 0.0f , 0.0f          }; // in dips
             
             wstring               font_locale       { L"en-us" }; // en-GB
             wstring               font_face         { L"Times New Roman"   }; // font family
@@ -49,7 +52,9 @@ namespace hid
             // direction_reading
             // direction_flow
 
-            D2D1_SIZE_F  layout_size { 150.0 , 150.0 };
+            D2D1_SIZE_F  layout_size_ { 150.0 , 150.0 };
+
+            Rectangle2D  border {};
 
             bool         border_show          { true };
             float        border_line_width    { 2.0f };
@@ -63,58 +68,58 @@ namespace hid
             void reset_format();
             void reset_layout();
             void reset_brush();
+            void reset_border();
             
-            D2D1_SIZE_F get_formated_size() const;
-            float       get_formated_width_half() const ;
-            float       get_layout_height_half() const ;
-            //planes      get_middle_planes();
+            D2D1_SIZE_F layout_size() const;
+            float       width_half() const ;
+            float       height_half() const ;
+            //planes    middle_planes();
 
-            void draw_text() const;
-            void draw_border() const;
-            
         public:
 
-             text_d2d();
-             text_d2d( wstring const & in_content );
-             ~text_d2d();
+             Text();
+             Text( wstring const & in_content );
+             ~Text();
 
-            void set_content( wstring const & in_content );
-            void add_content( wstring const & in_string ); // add to end // concatenate
+            void set( wstring const & in_content );
+            void add( wstring const & in_string ); // add to end // concatenate
 
-            void set_font_locale( wstring const & in_locale );
-            void set_font_face( wstring const & in_font_face );
-            void set_font_size( float const in_font_size );
-            void set_font_colour( D2D1::ColorF const & in_font_colour );
-            void set_font_opacity( float const in_font_opacity );
-            void set_font_style( DWRITE_FONT_STYLE const in_font_style );
-            void set_font_weight( DWRITE_FONT_WEIGHT const in_font_weight );
-            void set_font_stretch( DWRITE_FONT_STRETCH const in_font_stretch );
+            void locale( wstring const & in_locale );
+            void face( wstring const & in_font_face );
+            void size( float in_font_size );
+            void colour( D2D1::ColorF const & in_font_colour );
+            void opacity( float in_font_opacity );
+            void style( DWRITE_FONT_STYLE in_font_style );
+            void weight( DWRITE_FONT_WEIGHT in_font_weight );
+            void stretch( DWRITE_FONT_STRETCH in_font_stretch );
 
-            void set_position_top_left( vertex const & in_position );
-            void set_layout_size( D2D1_SIZE_F const & in_layout_size );
+            void position( Point const & in_position );
+            void layout_size( D2D1_SIZE_F const & in_layout_size );
 
-            void set_show_border( bool const in_show_border );
+            void show_border( bool in_show_border );
             //void set_rectangle_radius( float in_radius );
             //void set_rectangle_line_colour( D2D1::ColorF in_colour );
             //void set_rectangle_line_width( float in_width );
             //void set_font_options( font_options in_font_options );
 
-            wstring get_content() const { return content; }
-            wstring get_font_locale() const { return font_locale; }
-            //font_options get_font_options();
-            vertex get_position_top_left() const;
-            //dimensions get_layout_size();
-            float get_top() const;
-            float get_right() const;
-            float get_left() const;
-            float get_bottom() const;
-            float get_formated_width() const ;
-            float get_formated_height() const ;
+            wstring content() const { return content_; }
+            wstring locale() const { return font_locale; }
+            //font_options options();
+            
+            Point  position() const;
+
+            //Rectangle get_layout_size();
+            float top() const;
+            float right() const;
+            float left() const;
+            float bottom() const;
+            float width() const ;
+            float height() const ;
 
             //rectangle_edge_middles get_middle_vertices();
             //rectangle            get_formated_rectangle();
 
-            void draw() const;
+            void draw();
 
     }; // class text
 

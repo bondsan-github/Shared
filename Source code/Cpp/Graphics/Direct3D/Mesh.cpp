@@ -1,4 +1,3 @@
-#include "Locate.hpp"
 #include "Graphics\Mesh.hpp"
 #include "Graphics\Graphics.hpp"
 
@@ -17,7 +16,6 @@ using DirectX::XMMatrixScaling;
 
 Mesh::Mesh()
 {
-    device = Locate::graphics().device();
     device->GetImmediateContext( & context );
 
     create_buffer_matrix_world();

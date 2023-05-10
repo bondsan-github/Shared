@@ -1,11 +1,12 @@
-
-#include "Graphics\Graphics2d.hpp"
+#include "Source code/Hpp/Graphics/Direct2D/Graphics2D.hpp"
 //#include "..\headers\write_d2d.h"
-#include "Application2d.hpp"
+
+#include "Source code/Hpp/Application.hpp"
+#include "Source code/Hpp/Output/Logging.hpp"
 
 //#include <winuser.h>
 
-void Graphics2d::initialise( HWND in_window )
+void Graphics::initialise( HWND in_window )
 {
     window = in_window;
 
@@ -93,13 +94,13 @@ void Graphics2d::initialise( HWND in_window )
     reset();
 }
 
-void Graphics2d::reset()
+void Graphics::reset()
 {
     //create_target();
     //create_swap_chain();
 }
 
-void Graphics2d::create_swap_chain()
+void Graphics::create_swap_chain()
 {
     DXGI_SWAP_CHAIN_DESC1 description {};
 
@@ -123,7 +124,7 @@ void Graphics2d::create_swap_chain()
                                                swap_chain.GetAddressOf() ) >> result_check;
 }
 
-void Graphics2d::draw_begin()
+void Graphics::draw_begin()
 {
     if( context_2d )
     {
@@ -147,25 +148,25 @@ void Graphics2d::draw_begin()
     }
 }
 
-void Graphics2d::draw_end()
+void Graphics::draw_end()
 {
     if( context_2d ) context_2d->EndDraw() >> result_check;
 
     if( swap_chain ) swap_chain->Present( 1, 0 ) >> result_check; 
 }
 
-D2D_SIZE_U Graphics2d::get_screen_size()
+D2D_SIZE_U Graphics::get_screen_size()
 {
     return { context_2d->GetPixelSize().width , context_2d->GetPixelSize().height };
 }
 
-D2D1_SIZE_F Graphics2d::get_size_dips()
+D2D1_SIZE_F Graphics::get_size_dips()
 {
     //D2D1_SIZE_F size = 
     return { context_2d->GetSize().width , context_2d->GetSize().height };
 }
 
-D2D_SIZE_F Graphics2d::get_dpi()
+D2D_SIZE_F Graphics::get_dpi()
 {
     D2D_SIZE_F page_dpi{ 0.0f , 0.0f };
 
@@ -174,7 +175,7 @@ D2D_SIZE_F Graphics2d::get_dpi()
     return page_dpi;
 }
 
-void Graphics2d::window_size_change( uint width , uint height )
+void Graphics::window_size_change( uint width , uint height )
 {
 
     //if( context_2d ) context_2d->Resize( { width, height } );

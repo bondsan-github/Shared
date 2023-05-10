@@ -10,9 +10,8 @@ using Microsoft::WRL::ComPtr;
 #include <string>
 #include <vector>
 
-#include "Graphics/Drawable.hpp"
-#include "Graphics/WIC.hpp"
-#include "Custom types.hpp"
+#include "Source code/Hpp/Graphics/WIC/WIC.hpp"
+#include "Source code/Hpp/Graphics/Point.hpp"
 
 class Image : public WIC
 {

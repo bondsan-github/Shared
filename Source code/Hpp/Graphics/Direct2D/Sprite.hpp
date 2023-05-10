@@ -2,8 +2,8 @@
 
 #include <d2d1.h>
 
-#include "Graphics/Image.hpp"
-#include "Timer.hpp"
+#include "Source code/Hpp/Graphics/Direct2D/Image.hpp"
+#include "Source code/Hpp/Time/Timer.hpp"
 
 #include <list>
 

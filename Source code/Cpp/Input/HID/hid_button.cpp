@@ -1,13 +1,13 @@
-#include "..\headers\hid_button.h"   
+#include "Source code/Hpp/Input/HID/Button.hpp"
 
-#include "..\headers\locate.h"
-#include "..\headers\hid_usages.h"
 #include <bitset>
+
+#include "Source code/Hpp/Input/HID/Usages.hpp"
+
 
 namespace hid
 {
-    
-    hid_button::hid_button( hid_device * in_device , const _HIDP_BUTTON_CAPS & construct_button )
+    Button::Button( Device * in_device , const _HIDP_BUTTON_CAPS & construct_button )
     {
         if( this not_eq &construct_button ) // prevents self assignment a = a;
         {
@@ -41,10 +41,8 @@ namespace hid
         }
     }
    
-    void hid_button::set_information_text()
+    void Button::text()
     {
-        content = locate::get_usages().page( UsagePage );
-
         if( IsRange )
         {
             content += L'\n';
@@ -104,14 +102,14 @@ namespace hid
         information.set_layout_size( { 200.0f, 200.0f } );
     };
 
-    void hid_button::update_information_text()
+    void Button::update_information_text()
     {
         content = on ? L"\non" : L"\noff";
         information.set_content( content );
     }
 
-    void hid_button::update( RAWINPUT * in_raw_data )
-    //void hid_button::update( RAWHID in_raw_data )
+    void Button::update( RAWINPUT * in_raw_data )
+    //void Button::update( RAWHID in_raw_data )
     {
         USAGE usages;// { nullptr }; // active buttons in page
         ulong usages_amount { 1 };

@@ -1,5 +1,4 @@
-﻿#include "Graphics\Icosahedron.hpp"
-#include "Graphics\Input layouts.hpp"
+﻿#include "Source code/Hpp/Graphics/Direct3D/Icosahedron.hpp"
 
 #include <vector>
 
@@ -7,7 +6,7 @@ Icosahedron::Icosahedron( uchar tessalation )
 {
     float φ = ( 1.0f + sqrt(5.0f) ) / 2.0f; // φ - phi - golden ratio ~ 1.62 
     
-    vector< Vertex > vertices_ // 12 Vertices 
+    vector< Vertex_uv > vertices_ // 12 Vertices 
     {
         //   position                     u_v
         { {  0.0f,  1.0f,  φ,  0.0f } , { 0.0f, 0.0f } } ,

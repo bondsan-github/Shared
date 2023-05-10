@@ -1,18 +1,18 @@
 #pragma once
 
-#include "..\headers\custom_types.h"
+#include "Source code/Hpp/Custom types.hpp"
 
 #include <string>
 #include <vector>
 
 namespace hid
 {
-    class hid_usages
+    class Usages
     {
         public:
          
-            hid_usages();
-            ~hid_usages();
+            Usages();
+            ~Usages();
             // copy and move 
 
             std::wstring page( const uint &in_page ); // const

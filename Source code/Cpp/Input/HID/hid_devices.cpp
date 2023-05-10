@@ -1,18 +1,16 @@
-#include "..\headers\hid_devices.h"
+#include "Source code/Hpp/Input/HID/HID_Devices.hpp"
 
-#include "..\headers\custom_types.h"
+#include "Source code/Hpp/Custom types.hpp"
+#include "Source code/Hpp/Output/Logging.hpp"
+
 //#include "..\headers\hid_device.h"
-#include "..\headers\locate.h"
-#include "..\headers\utility.h"
 
 #include <windows.h>
 
-namespace hid
+namespace HID
 {
-    void hid_devices::initialise()
+    void Devices::initialise()
     {
-        locate::set_input_devices( this );
-
         uint device_amount { 0 };
         //std::wstring message {};
         
@@ -37,7 +35,7 @@ namespace hid
             //message = L"\ndevice index: " + std::to_wstring( device_index );
             //OutputDebugStringW( message.data() );
 
-            hid_device new_device( raw_device_list.at(device_index).hDevice);
+            Device new_device( raw_device_list.at(device_index).hDevice);
 
             if( new_device.is_multi_touch() )
             {
@@ -95,9 +93,9 @@ namespace hid
         //    information.set_content( L"no precision multiple touch devices found" );
     }
 
-    hid_device * hid_devices::get_device( HANDLE in_handle )
+    Device * Devices::get_device( HANDLE in_handle )
     {
-        hid_device * pointer_device{ nullptr };
+        Device * pointer_device{ nullptr };
 
         for( auto & device : input_devices )
             if( device.get_handle() == in_handle )
@@ -110,7 +108,7 @@ namespace hid
     }
 
     // multiple devices
-    void hid_devices::update_devices( RAWINPUT * in_hid_report )
+    void Devices::update_devices( RAWINPUT * in_hid_report )
     {
         for( auto & device : input_devices ) 
         {
@@ -121,7 +119,7 @@ namespace hid
         }
     }
 
-    void hid_devices::update_devices_buffered( RAWINPUT ** in_raw_input_buffer , uint in_buffer_size )
+    void Devices::update_devices_buffered( RAWINPUT ** in_raw_input_buffer , uint in_buffer_size )
     {
         /*
         RAWINPUT * current_report = in_raw_input_buffer;
@@ -147,12 +145,12 @@ namespace hid
         //NEXTRAWINPUTBLOCK(ptr) ((PRAWINPUT)RAWINPUT_ALIGN((ULONG_PTR)((char *)(ptr) + (ptr)->header.dwSize)))
     }
 
-    void hid_devices::update_device_buffered( RAWINPUT ** in_raw_input_buffer , uint in_buffer_size )
+    void Devices::update_device_buffered( RAWINPUT ** in_raw_input_buffer , uint in_buffer_size )
     {
         input_devices.at(0).update_buffered( in_raw_input_buffer , in_buffer_size );
     }
 
-    void hid_devices::draw()
+    void Devices::draw()
     {
         //information.draw();
         for( auto & device : input_devices ) device.draw();

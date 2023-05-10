@@ -1,10 +1,10 @@
-#include "Graphics\WIC.hpp"
+#include "Source code/Hpp/Graphics/WIC/WIC.hpp"
 
 #include <d3d11_1.h>
 
-#include "Graphics\Graphics.hpp"
-#include "Locate.hpp"
-#include "Logging.hpp"
+//#include "Graphics\Graphics.hpp"
+
+#include "Source code/Hpp/Output/Logging.hpp"
 
 // image_formats
 // struct { string name , channel count , DXGI format , WIC_Guid }

@@ -1,10 +1,11 @@
 #pragma once
 
-#include "Operating system\MSWindows.hpp"
-#include "Time\Timer.hpp"
-#include "Graphics\Direct2D\Graphics 2d.hpp"
+#include "Operating system/MSWindows.hpp"
+#include "Graphics/Direct2D/Graphics2D.hpp"
+#include "Time/Timer.hpp"
+#include "Graphics/Size.hpp"
 
-class Application : public MSWindows , public Graphics2d , public Timer
+class Application : public MSWindows , public Graphics , public Timer
 {
     protected:
         
@@ -17,7 +18,7 @@ class Application : public MSWindows , public Graphics2d , public Timer
         
         Application();
 
-        void initialise( Size in_client_size );
+        void initialise( Size in_client_size = {} );
         void run();
 
         virtual ~Application() = default;

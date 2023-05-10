@@ -8,11 +8,12 @@ using Microsoft::WRL::ComPtr;
 
 #include <wincodec.h>
 
-#include "Custom types.hpp"
-#include "Graphics/WICFactory.hpp"
-#include "Graphics/Drawable.hpp"
+#include "Source code/Hpp/Custom types.hpp"
+#include "Source code/Hpp/Graphics/WIC/WICFactory.hpp"
 
-class WIC : public WICFactory , public Drawable
+#include "Source code/Hpp/Graphics/Direct2D/Drawable2D.hpp"
+
+class WIC : public WICFactory , public Drawable2D
 {
     private:
 

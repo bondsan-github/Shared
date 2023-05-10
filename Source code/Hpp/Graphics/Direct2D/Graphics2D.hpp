@@ -1,8 +1,5 @@
 ﻿#pragma once
 
-#include "Custom types.hpp"
-#include "Graphics/vertex.hpp"
-
 #include <windows.h>
 
 #include <wrl/client.h>
@@ -22,10 +19,11 @@ using Microsoft::WRL::ComPtr;
 //struct monitor {};
 //struct page {};
 
-#include "Graphics/Drawable.hpp"
-#include "Logging.hpp"
+#include "Source code/Hpp/Custom types.hpp"
+#include "Source code/Hpp/Graphics/Direct2D/Drawable2D.hpp"
+#include "Source code/Hpp/Graphics/Direct2D/Factory2D.hpp"
 
-class Graphics2d : public Drawable
+class Graphics : public Drawable2D , public Factory2D
 {
     private:
 
@@ -33,13 +31,13 @@ class Graphics2d : public Drawable
 
         HWND                    window {};
 
+        // -- 3D Device / adapter --
         ComPtr< ID3D11Device >    device_3d  {};
         ComPtr< IDXGIDevice >     device_gi  {};
         ComPtr< IDXGIFactory2 >   factory_gi {};
         ComPtr< IDXGISwapChain1 > swap_chain {};
 
         // -- 2D Device / adapter --
-        ComPtr< ID2D1Factory7 > factory_2d {};
         ComPtr< ID2D1Device1 >  device_2d  {};
         ComPtr< IDXGISurface2 > surface    {};
         ComPtr< ID2D1Bitmap1 >  bitmap     {};

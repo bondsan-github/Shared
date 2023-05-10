@@ -1,6 +1,6 @@
 #pragma once
 
-#include "..\headers\custom_types.h"
+#include "Source code/Hpp/Custom types.hpp"
 
 #include <hidpi.h>
 #include <hidsdi.h>
@@ -8,16 +8,16 @@
 #include <dwrite.h>
 #include <vector>
 
-namespace hid
+namespace HID
 {
     const enum class item_type { input , output , feature };
 
-    struct device_identity
+    struct Identity
     {
         ulong vendor  {};
         ulong product {};
 
-        bool operator == ( const device_identity & in_identity ) const
+        bool operator == ( const Identity & in_identity ) const
         {
             bool same = false;
              same = ( vendor == in_identity.vendor && product == in_identity.product );
