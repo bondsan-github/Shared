@@ -8,6 +8,7 @@
 #include "Source code/Hpp/Input/HID/HID_Button.hpp"
 #include "Source code/Hpp/Input/HID/HID_Value.hpp"
 #include "Source code/Hpp/Input/HID/HID_Usages.hpp"
+#include "Source code/Hpp/Input/HID/HID_Item.hpp"
 
 #include <string>
 #include <vector>
@@ -37,33 +38,34 @@ namespace HID
             std::vector< Button > feature_buttons{};
             std::vector< Value >  feature_values{};
 
-            Size spacing { 15.0f, 15.0f }; // spacers
+            Size spacing { 15, 15 }; // spacers
 
         public:
 
             Collection() {}
             Collection( Device * in_device ) : device( in_device ) {}
+
             void operator = ( const _HIDP_LINK_COLLECTION_NODE & in_node );
             void operator = ( _HIDP_LINK_COLLECTION_NODE && in_node ) noexcept;
 
-            void positions();
+            void calculate_positions();
 
-            void add_button( item_type in_type , Button & in_button );
-            void add_value( item_type in_type , Value & in_value );
+            void add_button( Report_type in_type , Button & in_button );
+            void add_value( Report_type in_type , Value & in_value );
 
             void collect_information();
-            void position( Point const & in_position );
+            void set_position( Point const & in_position );
             
-            Point position() const { return information.position(); }
-            float height()   const { return information.height();  }
-            float right()    const { return information.right(); }
-            float bottom()   const { return information.bottom(); }
-            float top()      const { return information.top(); }
+            Point get_position() const { return information.get_position(); }
+            float get_height()   const { return information.height();  }
+            float get_right()    const { return information.right(); }
+            float get_bottom()   const { return information.bottom(); }
+            float get_top()      const { return information.top(); }
 
-            Range range( ushort page ,
-                         ushort usage ,
-                         item_type report_type ,
-                         Types value_type );
+            Range get_range( ushort in_page ,
+                             ushort in_usage ,
+                             Report_type in_report_type ,
+                             Item_type in_item_type );
 
             //std::vector<hid_button>::iterator get_input_buttons() { return input_buttons.begin(); }
             //uint get_contact_amount();

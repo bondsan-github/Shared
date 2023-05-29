@@ -3,25 +3,33 @@
 #include "Source code/Hpp/Custom types.hpp"
 #include "Source code/Hpp/Output/Logging.hpp"
 
-//#include "..\headers\hid_device.h"
+#include "Multiple touch.hpp"
 
 #include <windows.h>
 
 namespace HID
 {
+    Devices::Devices( Multiple_touch & application )
+    : application { application }
+    {        
+    }
+
     void Devices::initialise()
     {
-        uint device_amount { 0 };
-        //std::wstring message {};
+        uint device_amount {};
         
-        int result = GetRawInputDeviceList( 0 , & device_amount , sizeof( RAWINPUTDEVICELIST ) );
+        int result = GetRawInputDeviceList( 0 ,
+                                            & device_amount ,
+                                            sizeof( RAWINPUTDEVICELIST ) );
 
         if( result < 0 ) error_exit( L"Unable to get raw input device list." );
 
         raw_device_list.resize( device_amount );
 
         // get device list
-        GetRawInputDeviceList( raw_device_list.data() , & device_amount , sizeof( RAWINPUTDEVICELIST ) );
+        GetRawInputDeviceList( raw_device_list.data() ,
+                               & device_amount ,
+                               sizeof( RAWINPUTDEVICELIST ) );
 
         //message = L"\ndevices amount: " + std::to_wstring( device_amount ) + L"\n";
         //OutputDebugStringW( message.data() );
@@ -36,7 +44,7 @@ namespace HID
             //message = L"\ndevice index: " + std::to_wstring( device_index );
             //OutputDebugStringW( message.data() );
 
-            Device new_device( raw_device_list.at(device_index).hDevice);
+            Device new_device( raw_device_list.at( device_index ).hDevice , application );
 
             if( new_device.is_multi_touch() )
             {
@@ -45,45 +53,18 @@ namespace HID
 
                 device_multiple_touch_index = device_index;
 
-                identity = new_device.identity();
+                identity = new_device.get_identity();
 
                 input_devices.push_back( new_device );
                 
                 // Register Raw Input Devices
-                locate::get_windows().register_input_device( new_device.get_page_and_usage() );
+                application.register_input_device( new_device.get_page() ,
+                                                   new_device.get_usage() );
 
                 break; // leaves iterator at current position
             }
         }
         
-        /*
-        device_index = 0;
-        // find same device in raw devices list
-        for( ; device_index < raw_device_list.size() ; device_index++ )
-        {
-            // dont re-add multiple touch device
-            if( device_index == device_multiple_touch_index )
-            {
-                message = L"\nskipping index: " + std::to_wstring( device_index );
-                OutputDebugStringW( message.data() );
-            }
-            else
-            {
-                message = L"\ndevice index: " + std::to_wstring( device_index );
-                OutputDebugStringW( message.data() );
-
-                hid_device new_device( raw_device_list.at( device_index ).hDevice );
-            
-                if( new_device.is_same_device( identity ) )
-                {
-                    message = L"\nadding device index: " + std::to_wstring( device_index );
-                    OutputDebugStringW( message.data() );
-
-                    input_devices.push_back( new_device );
-                }
-            }
-        }
-        */
         raw_device_list.clear();
 
         for( auto & device : input_devices )

@@ -20,7 +20,7 @@ Text::~Text()
     //content.clear();
 }
 
-void Text::locale( wstring const & in_font_locale )
+void Text::set_locale( wstring const & in_font_locale )
 {
     if( in_font_locale.empty() )
         font_locale = L"en-us"; // en-GB
@@ -31,7 +31,7 @@ void Text::locale( wstring const & in_font_locale )
     reset();
 }
 
-void Text::face( wstring const & in_font_face )
+void Text::set_face( wstring const & in_font_face )
 {
     if( in_font_face.empty() ) // is_valid_font_face()
         font_face = L"Times New Roman";
@@ -41,7 +41,7 @@ void Text::face( wstring const & in_font_face )
     reset();
 }
 
-void Text::size( float const in_font_size )
+void Text::set_size( float const in_font_size )
 {
     if( in_font_size <= 0.0f )//|| in_font_size > )
         font_size = 0.1f;
@@ -51,7 +51,7 @@ void Text::size( float const in_font_size )
     reset();
 }
 
-void Text::style( DWRITE_FONT_STYLE const in_font_style )
+void Text::set_style( DWRITE_FONT_STYLE const in_font_style )
 {
     /*
     if( in_font_style == DWRITE_FONT_STYLE_NORMAL  || 
@@ -66,7 +66,7 @@ void Text::style( DWRITE_FONT_STYLE const in_font_style )
 //void text::options( const font_options in_font_options ) { font_options = in_font_options; }
 //font_options text::options() const { return _font_options; }
 
-void Text::opacity( float const in_font_opacity )
+void Text::set_opacity( float const in_font_opacity )
 {
     if( in_font_opacity < 0.0f ) // || > 1.0f clamp(0.0,1.0);
         font_opacity = 0.0f;
@@ -76,7 +76,7 @@ void Text::opacity( float const in_font_opacity )
     reset();
 }
 
-void Text::weight( DWRITE_FONT_WEIGHT const in_font_weight )
+void Text::set_weight( DWRITE_FONT_WEIGHT const in_font_weight )
 {
     // between 1 and 999
     font_weight = in_font_weight;
@@ -84,21 +84,21 @@ void Text::weight( DWRITE_FONT_WEIGHT const in_font_weight )
     reset();
 }
 
-void Text::stretch( DWRITE_FONT_STRETCH const in_font_stretch )
+void Text::set_stretch( DWRITE_FONT_STRETCH const in_font_stretch )
 {
     font_stretch = in_font_stretch;
 
     reset();
 }
 
-void Text::layout_size( D2D1_SIZE_F const & in_layout_size )
+void Text::set_layout_size( D2D1_SIZE_F const & in_layout_size )
 {
     layout_size_ = in_layout_size;
 
     reset();
 }
 
-D2D1_SIZE_F Text::layout_size() const
+D2D1_SIZE_F Text::get_layout_size() const
 { 
     DWRITE_TEXT_METRICS metrics {};
 
@@ -160,7 +160,7 @@ float Text::width() const
     return layout_metrics.width;
 }
     
-float Text::width_half() const
+float Text::get_width_half() const
 {
     return width() / 2.0f;
 }
@@ -174,7 +174,7 @@ float Text::height() const
     return layout_metrics.height;
 }
 
-float Text::height_half() const
+float Text::get_height_half() const
 {
     return height() / 2.0f;
 }
@@ -192,17 +192,17 @@ void text::position( vertex in_position )
 }
 */
 
-void Text::position( const Point & in_position_top_left )
+void Text::set_position( const Point & in_position_top_left )
 {
     position_ = in_position_top_left;
 }
 
-Point Text::position() const
+Point Text::get_position() const
 {
     return position_;
 }
 
-void Text::colour( const D2D1::ColorF &in_font_colour )
+void Text::set_colour( const D2D1::ColorF &in_font_colour )
 {
     font_colour = in_font_colour;
 
@@ -241,8 +241,8 @@ void Text::show_border( bool in_show_border )
 
 void Text::reset_border()
 {
-    int x2 = layout_size().width;
-    int y2 = layout_size().height;
+    int x2 = get_layout_size().width;
+    int y2 = get_layout_size().height;
 
     border.position( position_ , { x2 , y2 } );
 

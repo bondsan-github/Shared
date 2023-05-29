@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "Custom types.hpp"
+#include "Source code/Hpp/Custom types.hpp"
 #include "Keys.hpp"
-#include "Observable.hpp"
+#include "Source code/Hpp/Patterns/Observable.hpp"
 
 #include <string>
 #include <map>

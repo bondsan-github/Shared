@@ -53,7 +53,7 @@ namespace HID
 
 
     // was for reseting to known state after moving 
-
+    /*
     class Capabilities : public _HIDP_CAPS
     {
         public:
@@ -121,25 +121,7 @@ namespace HID
                 memset( Data     , 0 , sizeof( ulong ) );
             }
     };
-
-    class text_metrics : public DWRITE_TEXT_METRICS
-    {
-        public:
-
-            text_metrics() { reset(); }
-
-            void reset()
-            {
-                left         = 0.0f; // in device independant pixels
-                top          = 0.0f;
-                width        = 0.0f;
-                widthIncludingTrailingWhitespace = 0.0f;
-                height       = 0.0f;
-                layoutWidth  = 0.0f;
-                layoutHeight = 0.0f;
-                maxBidiReorderingDepth = 0u;
-                lineCount    = 0u;
-            }
-    };
+*/
+   
 
 } // namespace hid

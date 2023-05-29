@@ -118,7 +118,7 @@ void MSWindows::window_size_changed( uint width , uint height )
     }
 }
 
-RECT MSWindows::client_position()
+RECT MSWindows::get_client_position()
 {
     RECT position {};
 
@@ -128,7 +128,7 @@ RECT MSWindows::client_position()
     return position;
 }
 
-Size MSWindows::client_size()
+Size MSWindows::get_client_size()
 {
     RECT area {};
     
@@ -137,7 +137,7 @@ Size MSWindows::client_size()
     return { area.right - area.left , area.bottom - area.top };
 }
 
-HWND MSWindows::window() const
+HWND MSWindows::get_window() const
 {
     return window_principle;
 }
@@ -280,6 +280,25 @@ void MSWindows::register_input_device( ushort page , ushort usage )
     };
 
     RegisterRawInputDevices( &raw_device , 1 , sizeof( RAWINPUTDEVICE ) );
+}
+
+void MSWindows::get_window_rectangles()
+{
+    EnumWindows( MSWindows::enumerate_windows ,
+                 reinterpret_cast< LPARAM >( this ) );
+}
+
+BOOL CALLBACK MSWindows::enumerate_windows( HWND window , LPARAM parameter )
+{
+    RECT rectangle{};
+
+    GetWindowRect( window , &rectangle );
+
+    MSWindows * window_class = reinterpret_cast< MSWindows * >( parameter );
+
+    window_class->window_recangles.insert( rectangle );
+
+    return true;
 }
 
 MSWindows::~MSWindows()

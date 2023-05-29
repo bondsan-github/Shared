@@ -69,7 +69,7 @@ namespace HID
 
     void Value::collect_information()
     {
-        content = page( UsagePage );
+        content = get_page( UsagePage );
 
         if( IsRange )
         {
@@ -77,14 +77,14 @@ namespace HID
 
             for( uint button_usage = Range.UsageMin; button_usage <= Range.UsageMax; button_usage++ )
             {
-                content += usage( UsagePage , button_usage );
+                content += get_usage( UsagePage , button_usage );
                 content += L",";
             }
         }
         else
         {
             content += L'\n';
-            content += usage( UsagePage , NotRange.Usage );
+            content += get_usage( UsagePage , NotRange.Usage );
         }
 
         // UNsigned long 32 bits / 4 bytes, only need last 16 bits / 2 bytes
@@ -262,9 +262,9 @@ namespace HID
         content += L"\nvalue\t:" + to_wstring( value_unsigned );
 
         information.set( content );
-        information.size( 10.0f );
-        information.colour( D2D1::ColorF::Yellow );
-        information.layout_size( { 200.0f, 200.0f } );
+        information.set_size( 10.0f );
+        information.set_colour( D2D1::ColorF::Yellow );
+        information.set_layout_size( { 200.0f, 200.0f } );
 
         //Resolution = ( Logical Maximum – Logical Minimum ) / ( ( Physical Maximum – Physical Minimum ) *
         //                                                      ( 10 Unit Exponent ) )

@@ -5,12 +5,13 @@
 #include "Source code/Hpp/Graphics/DWrite/Text.hpp"
 
 #include <hidpi.h>
+#include <string>
 
 namespace HID
 {
     class Device;
-
-    class Button : public _HIDP_BUTTON_CAPS , public Usages
+    
+    class Button : public _HIDP_BUTTON_CAPS , public ::HID::Usages
     {
         private:
 
@@ -27,11 +28,11 @@ namespace HID
             Button( Device * in_device, _HIDP_BUTTON_CAPS const & in_button_capabilities );
             
             void collect_information();
-            void append( std::wstring text ) { information.add( text ); }
-            void position( Point const & in_position ) { information.position( in_position ); }
-            void layout_size( D2D1_SIZE_F const & size ) { information.layout_size( size ); }
+            void append_text( std::wstring text ) { information.add( text ); }
+            void set_position( Point const & in_position ) { information.set_position( in_position ); }
+            void set_layout_size( D2D1_SIZE_F const & size ) { information.set_layout_size( size ); }
 
-            Point position() const { return information.position(); }
+            Point get_position() const { return information.get_position(); }
 
             float top() const    { return information.top();    }
             float right() const  { return information.right();  }

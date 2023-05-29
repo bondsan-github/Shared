@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 
-namespace hid
+namespace HID
 {
     enum class Item_type : unsigned long
     {

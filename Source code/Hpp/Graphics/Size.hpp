@@ -23,7 +23,8 @@ class Size
         // conversion
         operator D2D1_SIZE_U ();
         operator D2D1_SIZE_F ();
-        
+        operator RECT ();
+
         void width( int width );
         void height( int height );
 

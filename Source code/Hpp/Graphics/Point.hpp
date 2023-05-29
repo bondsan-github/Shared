@@ -13,6 +13,7 @@ class Point
 
         Point();
         Point( int x , int y );
+        //Point( float x , float y );
 
         void x( int x );
         void y( int y );

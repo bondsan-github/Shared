@@ -27,8 +27,8 @@ namespace HID
 
             Value( Device * const in_device , _HIDP_VALUE_CAPS const & construct_value );
 
-            void  position( Point const & in_position ) { information.position( in_position ); }
-            void  append( std::wstring in_text ) { information.add( in_text ); }
+            void  set_position( Point const & in_position ) { information.set_position( in_position ); }
+            void  append_text( std::wstring in_text ) { information.add( in_text ); }
 
             float right() const { return information.right(); }
             float top()   const { return information.top(); }

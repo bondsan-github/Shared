@@ -4,15 +4,16 @@
 
 #include "Source code/Hpp/Input/HID/HID_Globals.hpp"
 //#include "Source code/Hpp/Input/HID/HID_Raw_device.hpp"
-#include "Source code/Hpp/Input/HID/HID_Collection.hpp"
-#include "Source code/Hpp/Input/HID/Collections.hpp"
+#include "Source code/Hpp/Input/HID/HID_Collections.hpp"
 #include "Source code/Hpp/Input/HID/HID_Usages.hpp"
 #include "Source code/Hpp/Input/HID/HID_Button.hpp"   
 #include "Source code/Hpp/Input/HID/HID_Value.hpp"
 
 #include "Source code/Hpp/Graphics/DWrite/Text.hpp"
-#include "Source code/Hpp/Graphics/Direct2D/Circle.hpp"
+#include "Source code/Hpp/Graphics/Direct2D/Circle2D.hpp"
 //#include "Source code/Hpp/Graphics/Direct2D/line2D.hpp"
+
+#include "Source code/Hpp/Output/Logging.hpp"
 
 #include "Contact.hpp"
 
@@ -21,22 +22,25 @@
 //#include <unordered_map>
 //#include <bitset>
 
+//class Application;
+#include "Source code/Hpp/Application.hpp"
+
 namespace HID
 {
-    class Device
+    class Device : public Collections , public Usages , public Logging
     {
         private:
 
-            Identity     identity_   {};
-            HANDLE       raw_handle  { nullptr };
-            HANDLE       file_handle { nullptr };
+            Identity     identity    {};
+            HANDLE       raw_handle  {};
+            HANDLE       file_handle {};
             std::wstring path        { L"no device path" }; // or std::filesystem::wpath
-            uint         path_char_amount { 0 };
+            uint         path_char_amount {};
             
-            RID_DEVICE_INFO info { .cbSize = sizeof( RID_DEVICE_INFO ) };
+            RID_DEVICE_INFO rid_information { .cbSize = sizeof( RID_DEVICE_INFO ) };
 
-            ushort page  { 0 };
-            ushort usage { 0 };
+            ushort page  {};
+            ushort usage {};
             //NTSTATUS       hid_result   { HIDP_STATUS_NULL };
             //hidp_status    status       { };
 
@@ -45,9 +49,9 @@ namespace HID
             Requests request;
             Report   input_report , output_report , feature_report;
 
-            Capabilities          capabilities {};
-            Attributes            attributes {};
-            Attributes_extended   attributes_extra {};
+            HIDP_CAPS                  capabilities {};
+            HIDD_ATTRIBUTES            attributes {};
+            HIDP_EXTENDED_ATTRIBUTES   attributes_extra {};
 
             static const uint string_size { 127u };
 
@@ -59,8 +63,6 @@ namespace HID
             std::wstring product      {};
             std::wstring physical     {};
             
-            Collections collections;
-
             Text         information      {};
             Point        text_position    { 10.0f , 10.0f };
             Size         text_layout_size { 300.0f , 80.0f }; // shrink to fit?
@@ -86,11 +88,13 @@ namespace HID
 
             const static uint contact_amount { 5 };
 
-            std::array< contact , contact_amount > contacts;
+            std::array< Contact , contact_amount > contacts;
 
             Range       touchpad_resolution {};
             D2D1_SIZE_F screen_dpi {};
             D2D1_SIZE_F pad_to_screen_ratio {};
+
+            Application & application;
 
         private:
             
@@ -100,34 +104,37 @@ namespace HID
         public:
 
             //hid_device( const HANDLE & in_device );
-            Device( HANDLE in_device );
+            Device( HANDLE in_device , Application & application );
             ~Device();
 
             bool            is_multi_touch();
-            std::wstring    path();
-            Identity        identity() const { return identity_; }
-            HANDLE          handle() const { return raw_handle; }
-            page_and_usage  page_and_usage() { return { page , usage }; }
-            bool            is_same_device( Identity in_identity ) const { return identity_ == in_identity; }
-            unsigned char * data() { return data_preparsed.data(); }
-            uint            input_report_size() { return capabilities.InputReportByteLength; }
+            ushort          get_page() const { return page; }
+            ushort          get_usage() const { return usage; }
+            std::wstring    get_path();
+            Identity        get_identity() const { return identity; }
+            HANDLE          get_handle() const { return raw_handle; }
+            //page_and_usage  page_and_usage() { return { page , usage }; }
+            bool            is_same_device( Identity in_identity ) const { return identity == in_identity; }
+            unsigned char * get_data() { return data_preparsed.data(); }
+            uint            get_input_report_size() { return capabilities.InputReportByteLength; }
             
             void  update( RAWINPUT * in_report );
             void  update_buffered( RAWINPUT ** in_rawinput_array , uint in_report_amount );
             void  update();
 
             void  collect_information();
-            void  set_if_display_information( const bool in_bool );
+            void  set_display_information( const bool in_bool );
 
-            float top()    const { return information.get_top(); }
-            float bottom() const { return information.get_bottom(); }
-            float right()  const { return information.get_right(); }
-            float left()   const { return information.get_left(); }
+            float get_top()    const { return information.top(); }
+            float get_bottom() const { return information.bottom(); }
+            float get_right()  const { return information.right(); }
+            float get_left()   const { return information.left(); }
 
-            long  value_scaled( ushort in_page , ushort in_usage, RAWINPUT in_input );
-            ulong value_unscaled( ushort in_page , ushort in_usage , RAWHID * in_input );
+            long  get_value_scaled( ushort in_page , ushort in_usage, RAWINPUT in_input );
+            ulong get_value_unscaled( ushort in_page , ushort in_usage , RAWHID * in_input );
 
-            void update_contact( ulong in_identifier , float in_x , float in_y );
+            void  update_contact( ulong in_identifier , float in_x , float in_y );
+            // update()
 
             void draw();
 

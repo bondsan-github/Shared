@@ -68,9 +68,9 @@ class Text : public Write_factory , public Drawable2D
         void reset_brush();
         void reset_border();
             
-        D2D1_SIZE_F layout_size() const;
-        float       width_half() const ;
-        float       height_half() const ;
+        D2D1_SIZE_F get_layout_size() const;
+        float       get_width_half() const ;
+        float       get_height_half() const ;
         //planes    middle_planes();
 
     public:
@@ -82,17 +82,17 @@ class Text : public Write_factory , public Drawable2D
         void set( wstring const & in_content );
         void add( wstring const & in_string ); // add to end // concatenate
 
-        void locale( wstring const & in_locale );
-        void face( wstring const & in_font_face );
-        void size( float in_font_size );
-        void colour( D2D1::ColorF const & in_font_colour );
-        void opacity( float in_font_opacity );
-        void style( DWRITE_FONT_STYLE in_font_style );
-        void weight( DWRITE_FONT_WEIGHT in_font_weight );
-        void stretch( DWRITE_FONT_STRETCH in_font_stretch );
+        void set_locale( wstring const & in_locale );
+        void set_face( wstring const & in_font_face );
+        void set_size( float in_font_size );
+        void set_colour( D2D1::ColorF const & in_font_colour );
+        void set_opacity( float in_font_opacity );
+        void set_style( DWRITE_FONT_STYLE in_font_style );
+        void set_weight( DWRITE_FONT_WEIGHT in_font_weight );
+        void set_stretch( DWRITE_FONT_STRETCH in_font_stretch );
 
-        void position( Point const & in_position );
-        void layout_size( D2D1_SIZE_F const & in_layout_size );
+        void set_position( Point const & in_position );
+        void set_layout_size( D2D1_SIZE_F const & in_layout_size );
 
         void show_border( bool in_show_border );
         //void set_rectangle_radius( float in_radius );
@@ -100,11 +100,11 @@ class Text : public Write_factory , public Drawable2D
         //void set_rectangle_line_width( float in_width );
         //void set_font_options( font_options in_font_options );
 
-        wstring content() const { return content_; }
-        wstring locale() const { return font_locale; }
+        wstring get_content() const { return content_; }
+        wstring get_locale() const { return font_locale; }
         //font_options options();
             
-        Point  position() const;
+        Point  get_position() const;
 
         //Rectangle get_layout_size();
         float top() const;
@@ -123,3 +123,25 @@ class Text : public Write_factory , public Drawable2D
 
 //https://learn.microsoft.com/en-us/windows/win32/direct2d/improving-direct2d-performance#use-a-multithreaded-device-context
 //https://learn.microsoft.com/en-us/windows/win32/directwrite/rendering-by-using-direct2d
+
+/*
+class Text_metrics : public DWRITE_TEXT_METRICS
+{
+    public:
+
+        Text_metrics() { reset(); }
+
+        void reset()
+        {
+            left         = 0.0f; // in device independant pixels
+            top          = 0.0f;
+            width        = 0.0f;
+            widthIncludingTrailingWhitespace = 0.0f;
+            height       = 0.0f;
+            layoutWidth  = 0.0f;
+            layoutHeight = 0.0f;
+            maxBidiReorderingDepth = 0u;
+            lineCount    = 0u;
+        }
+};
+*/

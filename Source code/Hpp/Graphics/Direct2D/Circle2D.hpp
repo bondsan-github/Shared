@@ -12,4 +12,8 @@ class Circle2D : public Circle , public Drawable2D
 
         ComPtr< ID2D1SolidColorBrush > brush_{};
         ComPtr< ID2D1StrokeStyle1 >    style_{};
+
+    public:
+
+        //draw();
 };

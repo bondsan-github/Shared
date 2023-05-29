@@ -7,6 +7,8 @@ namespace HID
 {
     using usage_text = std::vector< std::vector< std::wstring > >;
     
+    // map< page , vector<strings> >
+
     const usage_text usages
     {
        {  // page 0x00 undefined 

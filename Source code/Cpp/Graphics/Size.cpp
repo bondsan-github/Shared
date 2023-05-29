@@ -45,6 +45,17 @@ Size::operator D2D1_SIZE_F ()
              static_cast< float >( height_ ) };
 }
 
+Size::operator RECT ()
+{
+    return 
+    {
+        .left   {} ,
+        .top    {} ,
+        .right  = static_cast< long >( width_ ) ,
+        .bottom = static_cast< long >( height_ )
+    };
+}
+
 bool Size::operator < ( Size const & in_rectangle )
 {
     return { ( width_ * height_ ) < ( in_rectangle.width() * in_rectangle.height() ) };

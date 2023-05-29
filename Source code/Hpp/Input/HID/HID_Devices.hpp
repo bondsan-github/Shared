@@ -5,12 +5,16 @@
 
 #include "Source code/Hpp/Graphics/DWrite/Text.hpp"
 
+#include "Source code/Hpp/Output/Logging.hpp"
+
 //#include <windows.h> // RAWINPUTDEVICELIST
 #include <vector>
 
 namespace HID
 {
-    class Devices // public write
+    class Multiple_touch;
+
+    class Devices : public Logging
     {
         private:
             
@@ -19,7 +23,11 @@ namespace HID
 
             Text information {};
 
+            Multiple_touch & application;
+
         public:
+
+            Devices( Multiple_touch & application );
 
             void initialise();
             

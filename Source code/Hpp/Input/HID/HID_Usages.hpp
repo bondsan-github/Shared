@@ -15,9 +15,9 @@ namespace HID
             ~Usages();
             // copy and move 
 
-            std::wstring page( uint in_page );
-            std::wstring usage(uint in_page , uint in_usage );
-            std::wstring type( uint in_type );
+            std::wstring get_page( uint in_page );
+            std::wstring get_usage( uint in_page , uint in_usage );
+            std::wstring get_type( uint in_type );
             //std::wstring type( uint in_page , int in_usage );
 
         protected:
@@ -46,6 +46,7 @@ namespace HID
                 // [ 0xFFFF ]
             };
 
+            /*
             // hid 6.2.2.6
             const enum class Types : uint // char
             {
@@ -62,7 +63,7 @@ namespace HID
                 vendor_defined_start = 0x80, // 0x80
                 //...
                 vendor_defined_end   = 0xFF  // 0xFF
-            };
+            }; */
 
             //using _type = collection_type;
             //using _text = std::wstring;

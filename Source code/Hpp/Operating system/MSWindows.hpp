@@ -89,24 +89,9 @@ class MSWindows : public Logging
 
         std::set<RECT> window_recangles {};
 
-        void window_rectangles()
-        {
-            EnumWindows( MSWindows::enumerate_windows ,
-                         reinterpret_cast< LPARAM >( this ) );
-        }
+        void get_window_rectangles();
 
-        static BOOL CALLBACK enumerate_windows( HWND window , LPARAM parameter )
-        {
-            RECT rectangle {};
-
-            GetWindowRect( window , & rectangle );
-
-            MSWindows * window_class = reinterpret_cast< MSWindows * >( parameter );
-
-            window_class->window_recangles.insert( rectangle );
-
-            return true;
-        }
+        static BOOL CALLBACK enumerate_windows( HWND window , LPARAM parameter );
 
     protected:
         
@@ -132,10 +117,10 @@ class MSWindows : public Logging
             
         void window_size_changed( uint width , uint height );
          
-        RECT client_position(); // Point position() const;
-        Size client_size();    //  Size  size() const;
+        RECT get_client_position(); // Point position() const;
+        Size get_client_size();    //  Size  size() const;
 
-        HWND window() const;
+        HWND get_window() const;
         
         int message_loop();
 

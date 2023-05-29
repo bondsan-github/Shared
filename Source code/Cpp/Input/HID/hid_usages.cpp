@@ -17,7 +17,7 @@ namespace HID
         //OutputDebugString( L"Usages::de-constructor\n" );
     };
 
-    std::wstring Usages::page( uint in_page )
+    std::wstring Usages::get_page( uint in_page )
     {
         try
         {
@@ -29,7 +29,7 @@ namespace HID
         }
     };
 
-    std::wstring Usages::usage( uint in_page , uint in_usage )
+    std::wstring Usages::get_usage( uint in_page , uint in_usage )
     {
         try
         {
@@ -41,7 +41,7 @@ namespace HID
         }
     }
 
-    std::wstring Usages::type( uint in_type )
+    std::wstring Usages::get_type( uint in_type )
     {
         // remove try catch
         try

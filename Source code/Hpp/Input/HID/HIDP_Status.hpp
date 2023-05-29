@@ -4,7 +4,7 @@
 
 namespace HID
 {
-   class hidp_status
+   class Status
    {
       public:
 

@@ -6,11 +6,13 @@ class Circle
 {
     private:
 
-        int   radius   {};
-        Point position {};
+        int   radius_   {};
+        Point position_ {};
 
     public:
 
         Circle();
 
+        void set_position( Point const & position );
+        Point get_position() const;
 };

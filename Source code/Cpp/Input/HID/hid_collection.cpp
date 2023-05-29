@@ -26,46 +26,46 @@ namespace HID
         IsAlias          = std::move( static_cast< bool >( in_node.IsAlias ) ); // This link node is an alias of the next link node.
     }
 
-    void Collection::add_button( item_type type , Button & button )
+    void Collection::add_button( Report_type type , Button & button )
     {
         button.collect_information();
 
         switch( type )
         {
-            case item_type::input:
+            case Report_type::input:
             {
                 input_buttons.push_back( button );
             } break;
 
-            case item_type::output:
+            case Report_type::output:
             {
                 output_buttons.push_back( button );
             } break;
 
-            case item_type::feature:
+            case Report_type::feature:
             {
                 feature_buttons.push_back( button );
             }
         }
     }
 
-    void Collection::add_value( item_type type , Value & value )
+    void Collection::add_value( Report_type type , Value & value )
     {
         value.collect_information();
 
         switch( type )
         {
-            case item_type::input:
+            case Report_type::input:
             {
                 input_values.push_back( value );
             } break;
 
-            case item_type::output:
+            case Report_type::output:
             {
                 output_values.push_back( value );
             } break;
 
-            case item_type::feature:
+            case Report_type::feature:
             {
                 feature_values.push_back( value );
             } break;
@@ -77,25 +77,25 @@ namespace HID
         std::wstring text;
         
         text += L"page\t: ";
-        text += page( LinkUsagePage );
+        text += get_page( LinkUsagePage );
         text += L"\nusage\t: ";
-        text += usage( LinkUsagePage , LinkUsage );
+        text += get_usage( LinkUsagePage , LinkUsage );
         text += L"\ncollection\t: ";
-        text += type( CollectionType );
+        text += get_type( CollectionType );
         text += IsAlias ? L"\nis alias" : L"\nnot alias";
 
         information.set( text );
-        information.layout_size( { 200.0f, 100.0f } );
-        information.size( 10.0f );
-        information.colour( D2D1::ColorF::Yellow );
+        information.set_layout_size( { 200.0f, 100.0f } );
+        information.set_size( 10.0f );
+        information.set_colour( D2D1::ColorF::Yellow );
     }
 
-    void Collection::position( Point const & in_position )
+    void Collection::set_position( Point const & in_position )
     {
-        information.position( in_position );
+        information.set_position( in_position );
     }
 
-    void Collection::positions()
+    void Collection::calculate_positions()
     {
         //RECT client_size {};
         //client_size = locate::get_windows().get_client_rectangle();
@@ -119,7 +119,7 @@ namespace HID
             if( button_itr not_eq input_buttons.begin() )
                 position.x( ( button_itr - 1 )->right() + 20.0f );
             
-            button_itr->position( position );
+            button_itr->set_position( position );
         }
         // --------------------------------------------------------------------
 
@@ -138,13 +138,13 @@ namespace HID
 
         for( ; value_itr < input_values.end() ; value_itr++ )
         {
-            value_itr->append( L"\ninput value" );
+            value_itr->append_text( L"\ninput value" );
 
              // get previous item text right side
             if( value_itr not_eq input_values.begin() )
                 position.x( ( value_itr - 1 )->right() + 20.0f );
 
-            value_itr->position( position );
+            value_itr->set_position( position );
         }
         // --------------------------------------------------------------------
 
@@ -174,7 +174,7 @@ namespace HID
             if( button_itr not_eq output_buttons.begin() )
                 position.x( ( button_itr - 1 )->right() + 20.0f );
 
-            button_itr->position( position );
+            button_itr->set_position( position );
         }
         // --------------------------------------------------------------------
 
@@ -209,12 +209,12 @@ namespace HID
 
         for( ; value_itr < output_values.end() ; value_itr++ )
         {
-            button_itr->append( L"\noutput value" );
+            button_itr->append_text( L"\noutput value" );
 
             if( value_itr not_eq output_values.begin() )
                 position.x( ( value_itr - 1 )->right() + 20.0f );
 
-            value_itr->position( position );
+            value_itr->set_position( position );
         }
         // --------------------------------------------------------------------
 
@@ -255,12 +255,12 @@ namespace HID
         button_itr = feature_buttons.begin();
         for( ; button_itr < feature_buttons.end() ; button_itr++ )
         {
-            button_itr->append( L"\nfeature button" );
+            button_itr->append_text( L"\nfeature button" );
 
             if( button_itr not_eq feature_buttons.begin() )
                 position.x( ( button_itr - 1 )->right() + 20.0f );
 
-            button_itr->position( position );
+            button_itr->set_position( position );
         }
         // --------------------------------------------------------------------
 
@@ -309,12 +309,12 @@ namespace HID
         value_itr = feature_values.begin();
         for( ; value_itr < feature_values.end() ; value_itr++ )
         {
-            value_itr->append( L"\nfeature value" );
+            value_itr->append_text( L"\nfeature value" );
 
             if( value_itr not_eq feature_values.begin() )
                 position.x( ( value_itr - 1 )->right() + 20.0f );
 
-            value_itr->position( position );
+            value_itr->set_position( position );
         }
         // --------------------------------------------------------------------
     }
@@ -339,29 +339,31 @@ namespace HID
         for( auto & value  : feature_values  ) value.draw();
     }
 
-    /*Range Collection::range(ushort page ,
-                             ushort usage ,
-                             item_type report_type ,
-                             Types value_type )
+    Range Collection::get_range( ushort in_page ,
+                                 ushort in_usage ,
+                                 Report_type in_report_type ,
+                                 Item_type in_item_type )
     {
+        /*
+
         std::vector< Value >::const_iterator vector_iterator {};
         std::vector< Value >::const_iterator vector_end {};
 
         switch( report_type )
         {
-            case item_type::input:
+            case Report_type::input:
             {
                 vector_iterator = input_values.cbegin();
                 vector_end = input_values.cend();
             } break;
 
-            case item_type::output:
+            case Report_type::output:
             {
                 vector_iterator = output_values.cbegin();
                 vector_end = output_values.cend();
             } break;
 
-            case item_type::feature:
+            case Report_type::feature:
             {
                 vector_iterator = feature_values.cbegin();
                 vector_end = feature_values.cend();
@@ -376,29 +378,29 @@ namespace HID
         {
             if( page == vector_iterator->UsagePage and usage == vector_iterator->Range.UsageMin )
             {
-                switch( value_type )
+                switch( item_type )
                 {
-                    case Types::logical:
+                    case Item_type::logical
                         return { vector_iterator->LogicalMin , vector_iterator->LogicalMax };
                     break;
 
-                    case Types::physical:
+                    case Item_type::physical
                         return { vector_iterator->PhysicalMin , vector_iterator->PhysicalMax };
                     break;
 
-                    case Types::usage:
+                    case Item_type::usage
                         return { vector_iterator->Range.UsageMin , vector_iterator->Range.UsageMax };
                     break;
 
-                    case Types::string:
+                    case Item_type::string
                         return { vector_iterator->Range.StringMin, vector_iterator->Range.StringMax };
                     break;
 
-                    case Value_type::designator:
+                    case Item_type::designator
                         return { vector_iterator->Range.DesignatorMin , vector_iterator->Range.DesignatorMax };
                     break;
 
-                    case Value_type::data_index:
+                    case Item_type::data_index
                         return { vector_iterator->Range.DataIndexMin , vector_iterator->Range.DataIndexMax };
                     break;
                 } // switch in_value_type
@@ -407,9 +409,11 @@ namespace HID
 
         } // vector loop
 
+        */
+
         return { 0 , 0 }; // vector empty
     }
-    */
+    
 
     /*
     uint Collection::get_contact_amount()

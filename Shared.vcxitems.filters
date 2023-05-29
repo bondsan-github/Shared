@@ -189,14 +189,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Size.hpp">
       <Filter>Source code\Hpp\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Circle.hpp">
-      <Filter>Source code\Cpp\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Direct2D\Circle2D.hpp">
       <Filter>Source code\Hpp\Graphics\Direct2D</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\Precision multiple touch\Source code\Hpp\Multiple touch.hpp">
-      <Filter>Source code\Hpp\Input\HID</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Source code\Hpp\Graphics\Circle.hpp">
+      <Filter>Source code\Hpp\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

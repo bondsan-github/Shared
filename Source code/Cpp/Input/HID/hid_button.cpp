@@ -51,13 +51,13 @@ namespace HID
 
             for( uint button_usage = Range.UsageMin; button_usage <= Range.UsageMax; button_usage++ )
             {
-                content += usage( UsagePage , button_usage );
+                content += get_usage( UsagePage , button_usage );
                 content += L",";
             }
         }
         else
         {
-            content += L'\n' + usage( UsagePage , NotRange.Usage );
+            content += L'\n' + get_usage( UsagePage , NotRange.Usage );
         }
 
         //content += IsAlias ? L"alias" : L"not aliased"; // does button have multiple usages
@@ -100,9 +100,9 @@ namespace HID
         content += on ? L"\non" : L"\noff";
 
         information.set( content );
-        information.size( 10.0f );
-        information.colour( D2D1::ColorF::Yellow );
-        information.layout_size( { 200.0f, 200.0f } );
+        information.set_size( 10.0f );
+        information.set_colour( D2D1::ColorF::Yellow );
+        information.set_layout_size( { 200.0f, 200.0f } );
     };
 
     void Button::update_information()
@@ -124,7 +124,7 @@ namespace HID
                         LinkCollection ,
                         & usages ,
                         & usages_amount ,
-                        reinterpret_cast< PHIDP_PREPARSED_DATA >( device->data() ) ,
+                        reinterpret_cast< PHIDP_PREPARSED_DATA >( device->get_data() ) ,
                         reinterpret_cast< char * >( in_raw_data->data.hid.bRawData ) , //BYTE uchar to char // M.S. your data types don't match up !! :(
                         in_raw_data->data.hid.dwSizeHid * in_raw_data->data.hid.dwCount );
 
